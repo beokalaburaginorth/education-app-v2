@@ -94,3 +94,18 @@ function searchKGID() {
 function openGoogleForm() {
   window.open("https://forms.gle/ut8fQEWoJeJkm2mv6", "_blank");
 }
+function showSchools() {
+let html = "<h2>School List</h2>";
+
+schools.forEach(s => {
+html += `
+<div class="card">
+<b>${s.name}</b><br>
+DISE: ${s.dise}<br>
+Cluster: ${s.cluster}<br>
+Type: ${s.type}
+</div>`;
+});
+
+document.getElementById("output").innerHTML = html;
+}
