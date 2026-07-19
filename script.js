@@ -109,3 +109,18 @@ Type: ${s.type}
 
 document.getElementById("output").innerHTML = html;
 }
+function showSchools() {
+let html = "<h2>School List</h2>";
+
+schools.forEach(s => {
+html += `
+<div class="card">
+<b>${s.name}</b><br>
+DISE: ${s.dise}<br>
+Cluster: ${s.cluster}<br>
+Type: ${s.type}
+</div>`;
+});
+
+document.getElementById("output").innerHTML = html;
+}
