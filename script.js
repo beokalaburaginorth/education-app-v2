@@ -1,18 +1,54 @@
 function showSchools() {
-  let html = "<h2>School List</h2><table border='1' cellpadding='8'>";
-  html += "<tr><th>DISE</th><th>School Name</th><th>Cluster</th><th>Type</th></tr>";
 
-  schools.forEach(s => {
-    html += `<tr>
-      <td>${s.dise}</td>
-      <td>${s.name}</td>
-      <td>${s.cluster}</td>
-      <td>${s.type}</td>
-    </tr>`;
+  let clusters = [...new Set(schools.map(s => s.cluster))].sort();
+
+  let html = `
+    <h2>School Master</h2>
+
+    <label><b>Select Cluster</b></label><br>
+    <select id="cluster" onchange="loadSchools()">
+      <option value="">-- Select Cluster --</option>
+  `;
+
+  clusters.forEach(c => {
+    html += `<option value="${c}">${c}</option>`;
   });
 
-  html += "</table>";
+  html += `
+    </select>
+
+    <br><br>
+
+    <label><b>Select School</b></label><br>
+    <select id="school" onchange="showSchoolDetails()">
+      <option value="">-- Select School --</option>
+    </select>
+
+    <br><br>
+
+    <div id="schoolDetails"></div>
+  `;
+
   document.getElementById("output").innerHTML = html;
+}
+
+function loadSchools() {
+
+  const cluster = document.getElementById("cluster").value;
+  const school = document.getElementById("school");
+
+  school.innerHTML =
+    '<option value="">-- Select School --</option>';
+
+  schools
+    .filter(s => s.cluster === cluster)
+    .forEach(s => {
+      school.innerHTML +=
+      `<option value="${s.dise}">
+        ${s.name}
+      </option>`;
+    });
+
 }
 
 function searchDISE() {
