@@ -110,7 +110,6 @@ function showSchoolDetails() {
       <p><b>📚 School Type:</b> ${school.type}</p>
 
     `;
-
   }
 function filterSchools() {
 
