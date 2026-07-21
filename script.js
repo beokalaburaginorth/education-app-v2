@@ -166,3 +166,21 @@ function searchKGID() {
   `;
 
 }
+function showDashboard() {
+
+  const totalSchools = schools.length;
+  const totalClusters = [...new Set(schools.map(s => s.cluster))].length;
+  const lps = schools.filter(s => s.type === "LPS").length;
+  const hps = schools.filter(s => s.type === "HPS").length;
+  const hs = schools.filter(s => s.type === "HS").length;
+
+  document.getElementById("output").innerHTML = `
+    <h2>📊 Dashboard</h2>
+
+    <p><b>🏫 Total Schools:</b> ${totalSchools}</p>
+    <p><b>🏢 Total Clusters:</b> ${totalClusters}</p>
+    <p><b>📚 LPS:</b> ${lps}</p>
+    <p><b>🏫 HPS:</b> ${hps}</p>
+    <p><b>🎓 HS:</b> ${hs}</p>
+  `;
+}
