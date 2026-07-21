@@ -182,5 +182,27 @@ alert("Dashboard Working");
     <p><b>📚 LPS:</b> ${lps}</p>
     <p><b>🏫 HPS:</b> ${hps}</p>
     <p><b>🎓 HS:</b> ${hs}</p>
+    <hr>
+
+<h3>📋 Cluster-wise School Count</h3>
+
+<table border="1" style="width:100%; border-collapse:collapse;">
+<tr>
+  <th>Cluster</th>
+  <th>Schools</th>
+</tr>
+
+${
+  [...new Set(schools.map(s => s.cluster))]
+    .sort()
+    .map(cluster => `
+      <tr>
+        <td>${cluster}</td>
+        <td>${schools.filter(s => s.cluster === cluster).length}</td>
+      </tr>
+    `).join("")
+}
+
+</table>
   `;
 }
