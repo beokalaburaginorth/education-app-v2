@@ -100,22 +100,27 @@ function showSchoolDetails() {
 
   if (!school) return;
 
-  document.getElementById("schoolDetails").innerHTML = `
+ document.getElementById("schoolDetails").innerHTML = `
+<div style="background:#f8f9fa;padding:20px;border-radius:10px;border:1px solid #ddd; margin-top:15px;">
 
-    <hr>
+<h2>🏫 School Profile</h2>
+<hr>
 
-    <h3>School Details</h3>
+<p><b>🏫 School Name :</b> ${school.name}</p>
+<p><b>🆔 DISE Code :</b> ${school.dise}</p>
+<p><b>🏢 Cluster :</b> ${school.cluster}</p>
+<p><b>📚 School Type :</b> ${school.type}</p>
 
-    <p><b>🏫 School :</b> ${school.name}</p>
+<hr>
 
-    <p><b>🏢 Cluster :</b> ${school.cluster}</p>
+<p><b>👨‍🏫 HM Name :</b> Coming Soon</p>
+<p><b>📞 HM Mobile :</b> Coming Soon</p>
+<p><b>🎓 Medium :</b> Coming Soon</p>
+<p><b>👨‍🎓 Total Students :</b> Coming Soon</p>
+<p><b>👨‍🏫 Total Teachers :</b> Coming Soon</p>
 
-    <p><b>🆔 DISE :</b> ${school.dise}</p>
-
-    <p><b>📚 Type :</b> ${school.type}</p>
-
-  `;
-
+</div>
+`;
 }
 function searchDISE() {
 
