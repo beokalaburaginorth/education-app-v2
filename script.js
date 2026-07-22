@@ -279,3 +279,34 @@ function showContact() {
   `;
 
 }
+function showGallery() {
+
+  document.getElementById("output").innerHTML = `
+
+  <h2>📸 Photo Gallery</h2>
+
+  <div class="gallery">
+
+    <div class="gallery-card">
+      <img src="images/gallery/training1.jpg" alt="Training">
+      <h3>Teacher Training</h3>
+      <p>21-07-2026</p>
+    </div>
+
+    <div class="gallery-card">
+      <img src="images/gallery/meeting1.jpg" alt="Meeting">
+      <h3>BEO Meeting</h3>
+      <p>18-07-2026</p>
+    </div>
+
+    <div class="gallery-card">
+      <img src="images/gallery/school1.jpg" alt="School Visit">
+      <h3>School Visit</h3>
+      <p>15-07-2026</p>
+    </div>
+
+  </div>
+
+  `;
+
+}
