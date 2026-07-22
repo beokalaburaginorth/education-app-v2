@@ -350,38 +350,7 @@ function showFestivals() {
     <button onclick="showGallery()">⬅ Back to Gallery</button>
   `;
 }
-function showAdmin() {
 
-  document.getElementById("output").innerHTML = `
-
-  <h2>🔐 Admin Panel</h2>
-
-  <div class="container">
-
-    <div class="card">
-      <h2>📸 Upload Photos</h2>
-      <p>Gallery Management</p>
-    </div>
-
-    <div class="card">
-      <h2>📄 Upload Circular</h2>
-      <p>PDF & Orders</p>
-    </div>
-
-    <div class="card">
-      <h2>📥 Upload Downloads</h2>
-      <p>Forms & Files</p>
-    </div>
-
-    <div class="card">
-      <h2>📰 Latest News</h2>
-      <p>Portal Updates</p>
-    </div>
-
-  </div>
-
-  `;
-}
 function showAdmin() {
 
 document.getElementById("output").innerHTML = `
