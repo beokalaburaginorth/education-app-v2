@@ -475,3 +475,26 @@ alert("❌ Wrong Username or Password");
 }
 
 }
+function galleryManager(){
+
+document.getElementById("output").innerHTML = `
+
+<h2>📸 Gallery Manager</h2>
+
+<input type="file" id="galleryPhoto">
+
+<br><br>
+
+<input type="text" id="photoTitle" placeholder="Photo Title">
+
+<br><br>
+
+<button onclick="uploadPhoto()">📤 Upload Photo</button>
+
+<hr>
+
+<div id="galleryStatus"></div>
+
+`;
+
+}
