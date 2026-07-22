@@ -237,3 +237,20 @@ function showCirculars() {
   `;
 
 }
+function showContact() {
+
+  document.getElementById("output").innerHTML = `
+    <h2>☎️ Contact Details</h2>
+
+    <p><b>🏢 Office:</b> Block Education Office, Kalaburagi North</p>
+
+    <p><b>📍 Address:</b> Kalaburagi, Karnataka</p>
+
+    <p><b>📞 Phone:</b> Coming Soon</p>
+
+    <p><b>📧 Email:</b> Coming Soon</p>
+
+    <p><b>🌐 Website:</b> Coming Soon</p>
+  `;
+
+}
