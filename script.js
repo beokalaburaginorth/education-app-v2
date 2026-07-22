@@ -313,12 +313,18 @@ function showGallery() {
 
 }
 function showTraining() {
+
   document.getElementById("output").innerHTML = `
     <h2>🎓 Teacher Training</h2>
-    <img src="images/training.jpg" width="100%">
+
+    <img src="./images/training.jpg?v=1"
+         style="width:100%;max-width:700px;border-radius:10px;">
+
     <br><br>
+
     <button onclick="showGallery()">⬅ Back to Gallery</button>
   `;
+
 }
 
 function showMeetings() {
