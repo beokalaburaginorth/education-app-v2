@@ -498,3 +498,22 @@ document.getElementById("output").innerHTML = `
 `;
 
 }
+function uploadPhoto(){
+
+const file=document.getElementById("galleryPhoto").files[0];
+
+const title=document.getElementById("photoTitle").value;
+
+if(!file){
+
+alert("Please Select Photo");
+
+return;
+
+}
+
+document.getElementById("galleryStatus").innerHTML=
+
+"✅ Photo Selected : <b>"+file.name+"</b><br><br>Title : "+title;
+
+}
