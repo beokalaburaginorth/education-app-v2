@@ -505,17 +505,42 @@ document.getElementById("output").innerHTML = `
 `;
 
 }
-function uploadPhoto(){
+async function uploadPhoto(){
 
-const file=document.getElementById("galleryPhoto").files[0];
-
-const title=document.getElementById("photoTitle").value;
+const file = document.getElementById("galleryPhoto").files[0];
+const title = document.getElementById("photoTitle").value;
 
 if(!file){
+  alert("Please Select Photo");
+  return;
+}
 
-alert("Please Select Photo");
+const formData = new FormData();
+formData.append("file", file);
+formData.append("upload_preset", "beo_gallery");
 
-return;
+document.getElementById("galleryStatus").innerHTML = "Uploading...";
+
+try{
+
+const res = await fetch("https://api.cloudinary.com/v1_1/ycyleyq2/image/upload",{
+method:"POST",
+body:formData
+});
+
+const data = await res.json();
+
+document.getElementById("galleryStatus").innerHTML = `
+✅ Upload Success<br><br>
+<b>${title}</b><br>
+<a href="${data.secure_url}" target="_blank">View Photo</a>
+`;
+
+}catch(e){
+
+document.getElementById("galleryStatus").innerHTML="❌ Upload Failed";
+
+}
 
 }
 
