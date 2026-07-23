@@ -504,3 +504,17 @@ document.getElementById("galleryStatus").innerHTML=
 "✅ Photo Selected : <b>"+file.name+"</b><br><br>Title : "+title;
 
 }
+function uploadCircular(){
+
+const file = document.getElementById("circularFile").files[0];
+const title = document.getElementById("circularTitle").value;
+
+if(!file){
+alert("Please Select PDF");
+return;
+}
+
+document.getElementById("circularStatus").innerHTML =
+"✅ PDF Selected : <b>"+file.name+"</b><br><br>📄 Title : "+title;
+
+}
