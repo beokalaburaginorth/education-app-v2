@@ -506,7 +506,7 @@ document.getElementById("output").innerHTML = `
 
 }
 async function uploadPhoto(){
-
+  
 const file = document.getElementById("galleryPhoto").files[0];
 const title = document.getElementById("photoTitle").value;
 
