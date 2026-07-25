@@ -527,9 +527,31 @@ document.getElementById("output").innerHTML = `
 <br><br>
 
 <input type="text" id="photoTitle" placeholder="Photo Title">
-
 <br><br>
 
+<select id="photoCategory">
+
+<option value="Teacher Training">🎓 Teacher Training</option>
+
+<option value="Meetings">📢 Meetings</option>
+
+<option value="School Visits">🏫 School Visits</option>
+
+<option value="National Festivals">🇮🇳 National Festivals</option>
+
+</select>
+
+<br><br>
+<br><br>
+<br><br>
+
+<h3>📷 Preview</h3>
+
+<img
+  id="previewImage"
+  style="max-width:300px;border-radius:10px;display:none;">
+
+<br><br>
 <button onclick="uploadPhoto()">📤 Upload Photo</button>
 
 <hr>
