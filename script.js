@@ -874,11 +874,11 @@ html += `
 <h3>${c.title}</h3>
 <p>📅 ${c.date}</p>
 
-<a href="${c.url}" target="_blank">
+<a href="${c.pdf}" target="_blank">
 <button>👁 View PDF</button>
 </a>
 
-<a href="${c.url}" download>
+<a href="${c.pdf}" download>
 <button>⬇ Download</button>
 </a>
 
