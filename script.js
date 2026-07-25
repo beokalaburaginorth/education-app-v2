@@ -732,7 +732,9 @@ method:"POST",
 body:formData
 });
 
-const data = await res.json();
+const data = await res.json(); 
+console.log(data);
+alert(JSON.stringify(data)); 
 alert(data.secure_url);
 let circulars = JSON.parse(localStorage.getItem("circulars")) || [];
 
