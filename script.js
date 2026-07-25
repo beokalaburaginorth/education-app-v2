@@ -782,3 +782,44 @@ showTraining();
 function deletePhoto(imageUrl){
     alert("Delete button working");
 }
+async function uploadCircular(){
+
+const file = document.getElementById("circularFile").files[0];
+const title = document.getElementById("circularTitle").value;
+
+if(!file){
+alert("Please Select PDF");
+return;
+}
+
+document.getElementById("circularStatus").innerHTML =
+"⏳ Uploading PDF...";
+
+const formData = new FormData();
+
+formData.append("file", file);
+formData.append("upload_preset", "education_upload");
+
+const res = await fetch(
+"https://api.cloudinary.com/v1_1/YOUR_CLOUD_NAME/auto/upload",
+{
+method:"POST",
+body:formData
+});
+
+const data = await res.json();
+
+let circulars = JSON.parse(localStorage.getItem("circulars")) || [];
+
+circulars.push({
+title:title,
+url:data.secure_url,
+date:new Date().toLocaleDateString()
+});
+
+localStorage.setItem("circulars", JSON.stringify(circulars));
+
+document.getElementById("circularStatus").innerHTML =
+"✅ Circular Uploaded Successfully";
+
+}
