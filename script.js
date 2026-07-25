@@ -314,38 +314,48 @@ function showGallery() {
 }
 function showTraining() {
 
-const photo = JSON.parse(localStorage.getItem("galleryImage"));
+const gallery = JSON.parse(localStorage.getItem("galleryImages")) || [];
 
-if(photo){
-
-document.getElementById("output").innerHTML = `
-
+let html = `
 <h2>🎓 Teacher Training</h2>
+`;
+
+if(gallery.length === 0){
+
+html += "<p>No Photos Available</p>";
+
+}else{
+
+gallery.forEach(photo => {
+
+html += `
+
+<div class="card" style="margin-bottom:20px;">
 
 <h3>${photo.title}</h3>
+
+<p>📅 ${photo.date}</p>
 
 <img src="${photo.image}"
 style="width:100%;max-width:700px;border-radius:10px;">
 
-<br><br>
-
-<button onclick="showGallery()">⬅ Back to Gallery</button>
+</div>
 
 `;
 
-}else{
-
-document.getElementById("output").innerHTML = `
-
-<h2>🎓 Teacher Training</h2>
-
-<p>No Photos Available</p>
-
-<button onclick="showGallery()">⬅ Back to Gallery</button>
-
-`;
+});
 
 }
+
+html += `
+
+<br>
+
+<button onclick="showGallery()">⬅ Back to Gallery</button>
+
+`;
+
+document.getElementById("output").innerHTML = html;
 
 }
 
