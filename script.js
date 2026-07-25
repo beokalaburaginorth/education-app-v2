@@ -755,3 +755,20 @@ document.addEventListener("change", function(e){
   }
 
 });
+function deletePhoto(imageUrl){
+
+if(!confirm("Are you sure you want to delete this photo?")){
+    return;
+}
+
+let gallery = JSON.parse(localStorage.getItem("galleryImages")) || [];
+
+gallery = gallery.filter(photo => photo.image !== imageUrl);
+
+localStorage.setItem("galleryImages", JSON.stringify(gallery));
+
+alert("✅ Photo Deleted Successfully");
+
+showTraining();
+
+}
