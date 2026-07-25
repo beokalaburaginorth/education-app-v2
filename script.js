@@ -340,7 +340,13 @@ html += `
 
 <img src="${photo.image}"
 style="width:100%;max-width:700px;border-radius:10px;">
+<br><br>
 
+<button
+onclick="deletePhoto('${photo.image}')"
+style="background:red;color:white;padding:8px 15px;border:none;border-radius:6px;cursor:pointer;">
+🗑 Delete Photo
+</button>
 </div>
 
 `;
