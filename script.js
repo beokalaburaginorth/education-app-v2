@@ -246,20 +246,27 @@ function showDownloads() {
     <p>Downloads coming soon...</p>
   `;
 }
-function showCirculars() {
+function showCircularManager(){
 
-  document.getElementById("output").innerHTML = `
-    <h2>📢 Government Circulars</h2>
+document.getElementById("output").innerHTML = `
 
-    <ul>
-      <li>📄 BEO Office Circular - Coming Soon</li>
-      <li>📄 DSERT Circular - Coming Soon</li>
-      <li>📄 School Education Department Orders - Coming Soon</li>
-      <li>📄 UDISE+ Instructions - Coming Soon</li>
-    </ul>
+<h2>📄 Circular Manager</h2>
 
-    <p><b>Note:</b> ನಂತರ ಇಲ್ಲಿ PDF links ಸೇರಿಸಬಹುದು.</p>
-  `;
+<input type="file" id="circularFile" accept=".pdf">
+
+<br><br>
+
+<input type="text" id="circularTitle" placeholder="Circular Title">
+
+<br><br>
+
+<button onclick="uploadCircular()">📤 Upload Circular</button>
+
+<hr>
+
+<div id="circularStatus"></div>
+
+`;
 
 }
 function showContact() {
