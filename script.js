@@ -343,7 +343,7 @@ style="width:100%;max-width:700px;border-radius:10px;">
 <br><br>
 
 <button
-onclick="deletePhoto('${photo.image}')"
+<button onclick="deletePhoto('${photo.image}'); return false;">
 style="background:red;color:white;padding:8px 15px;border:none;border-radius:6px;cursor:pointer;">
 🗑 Delete Photo
 </button>
@@ -771,4 +771,7 @@ alert("✅ Photo Deleted Successfully");
 
 showTraining();
 
+}
+function deletePhoto(imageUrl){
+    alert("Delete button working");
 }
