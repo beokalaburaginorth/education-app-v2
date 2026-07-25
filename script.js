@@ -637,4 +637,28 @@ document.getElementById("downloadStatus").innerHTML =
 "✅ File Selected : <b>"+file.name+"</b><br><br>📄 Title : "+title;
 
 }
+document.addEventListener("change", function(e){
 
+  if(e.target.id === "galleryPhoto"){
+
+    const file = e.target.files[0];
+
+    if(!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function(){
+
+      const img = document.getElementById("previewImage");
+
+      img.src = reader.result;
+
+      img.style.display = "block";
+
+    };
+
+    reader.readAsDataURL(file);
+
+  }
+
+});
