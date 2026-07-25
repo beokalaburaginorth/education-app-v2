@@ -798,11 +798,9 @@ document.getElementById("circularStatus").innerHTML =
 const formData = new FormData();
 
 formData.append("file", file);
-formData.append("upload_preset", "education_upload");
+formData.append("upload_preset", "beo_gallery");
 
-const res = await fetch(
-"https://api.cloudinary.com/v1_1/YOUR_CLOUD_NAME/auto/upload",
-{
+const res = await fetch("https://api.cloudinary.com/v1_1/ycyleyq2/auto/upload", {
 method:"POST",
 body:formData
 });
