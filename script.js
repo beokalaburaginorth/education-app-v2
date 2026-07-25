@@ -362,11 +362,43 @@ document.getElementById("output").innerHTML = html;
 }
 
 function showMeetings() {
-  document.getElementById("output").innerHTML = `
-    <h2>📢 Meetings</h2>
-    <p>Photos Coming Soon...</p>
-    <button onclick="showGallery()">⬅ Back to Gallery</button>
-  `;
+
+const gallery = JSON.parse(localStorage.getItem("galleryImages")) || [];
+
+const meetings = gallery.filter(photo => photo.category === "Meetings");
+
+let html = `
+<h2>📢 Meetings</h2>
+`;
+
+if(meetings.length === 0){
+
+html += "<p>No Photos Available</p>";
+
+}else{
+
+meetings.forEach(photo => {
+
+html += `
+<div class="card" style="margin-bottom:20px;">
+<h3>${photo.title}</h3>
+<p>📅 ${photo.date}</p>
+<img src="${photo.image}"
+style="width:100%;max-width:700px;border-radius:10px;">
+</div>
+`;
+
+});
+
+}
+
+html += `
+<br>
+<button onclick="showGallery()">⬅ Back to Gallery</button>
+`;
+
+document.getElementById("output").innerHTML = html;
+
 }
 
 function showSchoolVisit() {
