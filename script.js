@@ -709,7 +709,7 @@ document.getElementById("galleryStatus").innerHTML="❌ Upload Failed";
 }
 
 
-function uploadCircular(){
+async function uploadCircular() {
 
 const file = document.getElementById("circularFile").files[0];
 const title = document.getElementById("circularTitle").value;
@@ -719,8 +719,40 @@ alert("Please Select PDF");
 return;
 }
 
+const formData = new FormData();
+formData.append("file", file);
+formData.append("upload_preset", "beo_gallery");
+
+document.getElementById("circularStatus").innerHTML = "Uploading...";
+
+try{
+
+const res = await fetch("https://api.cloudinary.com/v1_1/ycyleyq2/raw/upload",{
+method:"POST",
+body:formData
+});
+
+const data = await res.json();
+
+let circulars = JSON.parse(localStorage.getItem("circulars")) || [];
+
+circulars.push({
+title:title,
+pdf:data.secure_url,
+date:new Date().toLocaleDateString()
+});
+
+localStorage.setItem("circulars", JSON.stringify(circulars));
+
 document.getElementById("circularStatus").innerHTML =
-"✅ PDF Selected : <b>"+file.name+"</b><br><br>📄 Title : "+title;
+"✅ Circular Uploaded Successfully";
+
+}catch(e){
+
+document.getElementById("circularStatus").innerHTML =
+"❌ Upload Failed";
+
+}
 
 }
 function uploadDownload(){
