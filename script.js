@@ -821,3 +821,47 @@ document.getElementById("circularStatus").innerHTML =
 "✅ Circular Uploaded Successfully";
 
 }
+function showCirculars(){
+
+let circulars = JSON.parse(localStorage.getItem("circulars")) || [];
+
+let html = `
+<h2>📄 Latest Circulars</h2>
+`;
+
+if(circulars.length===0){
+
+html += "<p>No Circulars Available</p>";
+
+}else{
+
+circulars.forEach(c=>{
+
+html += `
+<div class="card" style="margin-bottom:20px;">
+<h3>${c.title}</h3>
+<p>📅 ${c.date}</p>
+
+<a href="${c.url}" target="_blank">
+<button>👁 View PDF</button>
+</a>
+
+<a href="${c.url}" download>
+<button>⬇ Download</button>
+</a>
+
+</div>
+`;
+
+});
+
+}
+
+html += `
+<br>
+<button onclick="showHome()">🏠 Home</button>
+`;
+
+document.getElementById("output").innerHTML = html;
+
+}
