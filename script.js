@@ -320,7 +320,9 @@ let html = `
 <h2>🎓 Teacher Training</h2>
 `;
 
-if(gallery.length === 0){
+const training = gallery.filter(photo => photo.category === "Teacher Training");
+
+if(training.length === 0){
 
 html += "<p>No Photos Available</p>";
 
