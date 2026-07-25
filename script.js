@@ -565,7 +565,7 @@ async function uploadPhoto(){
   
 const file = document.getElementById("galleryPhoto").files[0];
 const title = document.getElementById("photoTitle").value;
-
+const category = document.getElementById("photoCategory").value;
 if(!file){
   alert("Please Select Photo");
   return;
@@ -589,6 +589,7 @@ let gallery = JSON.parse(localStorage.getItem("galleryImages")) || [];
 
 gallery.push({
   title: title,
+  category: category,
   image: data.secure_url,
   date: new Date().toLocaleDateString()
 });
