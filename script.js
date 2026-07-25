@@ -531,7 +531,13 @@ body:formData
 });
 
 const data = await res.json();
-
+localStorage.setItem(
+  "galleryImage",
+  JSON.stringify({
+    title: title,
+    image: data.secure_url
+  })
+);
 document.getElementById("galleryStatus").innerHTML = `
 ✅ Upload Success<br><br>
 <b>${title}</b><br>
