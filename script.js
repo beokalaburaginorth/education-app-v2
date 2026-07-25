@@ -469,15 +469,17 @@ document.getElementById("output").innerHTML = `
 function checkLogin() {
 
 const user = document.getElementById("username").value.trim();
-const pass = document.getElementById("password").value;
+const pass = document.getElementById("password").value.trim();
 
-if(user === "beoadmin" && pass === "KLB2026@BEO") {
+if (user === "beoadmin" && pass === "KLB2026@BEO") {
 
-showAdmin();
+    alert("✅ Login Successful");
+
+    showAdmin();
 
 } else {
 
-alert("❌ Wrong Username or Password");
+    alert("❌ Invalid Username or Password");
 
 }
 
