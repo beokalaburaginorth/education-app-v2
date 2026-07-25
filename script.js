@@ -402,11 +402,37 @@ document.getElementById("output").innerHTML = html;
 }
 
 function showSchoolVisit() {
-  document.getElementById("output").innerHTML = `
-    <h2>🏫 School Visits</h2>
-    <p>Photos Coming Soon...</p>
-    <button onclick="showGallery()">⬅ Back to Gallery</button>
-  `;
+
+const gallery = JSON.parse(localStorage.getItem("galleryImages")) || [];
+
+const visits = gallery.filter(photo => photo.category === "School Visits");
+
+let html = `<h2>🏫 School Visits</h2>`;
+
+if(visits.length === 0){
+
+html += "<p>No Photos Available</p>";
+
+}else{
+
+visits.forEach(photo => {
+
+html += `
+<div class="card" style="margin-bottom:20px;">
+<h3>${photo.title}</h3>
+<p>📅 ${photo.date}</p>
+<img src="${photo.image}" style="width:100%;max-width:700px;border-radius:10px;">
+</div>
+`;
+
+});
+
+}
+
+html += `<br><button onclick="showGallery()">⬅ Back to Gallery</button>`;
+
+document.getElementById("output").innerHTML = html;
+
 }
 
 function showFestivals() {
