@@ -838,7 +838,7 @@ body:formData
 });
 
 const data = await res.json();
-
+console.log(data);
 let circulars = JSON.parse(localStorage.getItem("circulars")) || [];
 
 circulars.push({
