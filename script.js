@@ -328,7 +328,7 @@ html += "<p>No Photos Available</p>";
 
 }else{
 
-gallery.forEach(photo => {
+training.forEach(photo => {
 
 html += `
 
