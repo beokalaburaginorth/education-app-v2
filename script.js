@@ -546,11 +546,7 @@ document.getElementById("galleryStatus").innerHTML="❌ Upload Failed";
 
 }
 
-document.getElementById("galleryStatus").innerHTML=
 
-"✅ Photo Selected : <b>"+file.name+"</b><br><br>Title : "+title;
-
-}
 function uploadCircular(){
 
 const file = document.getElementById("circularFile").files[0];
