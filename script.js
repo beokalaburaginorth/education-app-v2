@@ -436,11 +436,37 @@ document.getElementById("output").innerHTML = html;
 }
 
 function showFestivals() {
-  document.getElementById("output").innerHTML = `
-    <h2>🇮🇳 National Festivals</h2>
-    <p>Photos Coming Soon...</p>
-    <button onclick="showGallery()">⬅ Back to Gallery</button>
-  `;
+
+const gallery = JSON.parse(localStorage.getItem("galleryImages")) || [];
+
+const festivals = gallery.filter(photo => photo.category === "National Festivals");
+
+let html = `<h2>🇮🇳 National Festivals</h2>`;
+
+if(festivals.length === 0){
+
+html += "<p>No Photos Available</p>";
+
+}else{
+
+festivals.forEach(photo => {
+
+html += `
+<div class="card" style="margin-bottom:20px;">
+<h3>${photo.title}</h3>
+<p>📅 ${photo.date}</p>
+<img src="${photo.image}" style="width:100%;max-width:700px;border-radius:10px;">
+</div>
+`;
+
+});
+
+}
+
+html += `<br><button onclick="showGallery()">⬅ Back to Gallery</button>`;
+
+document.getElementById("output").innerHTML = html;
+
 }
 
 function showAdmin() {
