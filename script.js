@@ -733,7 +733,7 @@ body:formData
 });
 
 const data = await res.json();
-
+alert(data.secure_url);
 let circulars = JSON.parse(localStorage.getItem("circulars")) || [];
 
 circulars.push({
