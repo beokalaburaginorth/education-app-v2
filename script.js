@@ -553,13 +553,15 @@ body:formData
 });
 
 const data = await res.json();
-localStorage.setItem(
-  "galleryImage",
-  JSON.stringify({
-    title: title,
-    image: data.secure_url
-  })
-);
+let gallery = JSON.parse(localStorage.getItem("galleryImages")) || [];
+
+gallery.push({
+  title: title,
+  image: data.secure_url,
+  date: new Date().toLocaleDateString()
+});
+
+localStorage.setItem("galleryImages", JSON.stringify(gallery));
 document.getElementById("galleryStatus").innerHTML = `
 ✅ Upload Success<br><br>
 <b>${title}</b><br>
