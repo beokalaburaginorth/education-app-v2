@@ -875,7 +875,7 @@ html += `
 <div class="card" style="margin-bottom:20px;">
 <h3>${c.title}</h3>
 <p>📅 ${c.date}</p>
-
+<p>${c.pdf}</p>
 <a href="${c.pdf}" target="_blank">
 <button>👁 View PDF</button>
 </a>
