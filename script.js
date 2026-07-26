@@ -760,7 +760,7 @@ html += "<p>No Circulars Available</p>";
 
 } else {
 
-circulars.forEach(c => {
+circulars.forEach((c, index) => {
 
 html += `
 <div class="card" style="margin-bottom:20px;">
