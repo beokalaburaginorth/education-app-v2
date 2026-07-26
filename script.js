@@ -261,7 +261,11 @@ document.getElementById("output").innerHTML = `
 <br><br>
 
 <button onclick="uploadCircular()">📤 Upload Circular</button>
+<hr>
 
+<h3>Manage Circulars</h3>
+
+<div id="manageCirculars"></div>
 <hr>
 
 <div id="circularStatus"></div>
