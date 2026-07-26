@@ -855,3 +855,25 @@ alert(JSON.stringify(data));
     console.log(e);
   }
 }
+function deleteCircular(index) {
+  let circulars = JSON.parse(localStorage.getItem("circulars")) || [];
+
+  if (confirm("Delete this circular?")) {
+    circulars.splice(index, 1);
+    localStorage.setItem("circulars", JSON.stringify(circulars));
+    showCirculars();
+    alert("Circular deleted successfully.");
+  }
+}
+function editCircular(index) {
+  let circulars = JSON.parse(localStorage.getItem("circulars")) || [];
+
+  let newTitle = prompt("Edit Circular Title", circulars[index].title);
+
+  if (newTitle !== null && newTitle.trim() !== "") {
+    circulars[index].title = newTitle.trim();
+    localStorage.setItem("circulars", JSON.stringify(circulars));
+    showCirculars();
+    alert("Circular updated successfully.");
+  }
+}
