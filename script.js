@@ -881,8 +881,17 @@ function changeCircularPDF(index) {
 
     showCircularManager();
 
-    setTimeout(() => {
-        document.getElementById("editCircularFile").click();
+    setTimeout(function () {
+
+        const fileInput = document.getElementById("editCircularFile");
+
+        if (!fileInput) {
+            alert("Edit PDF input not found.");
+            return;
+        }
+
+        fileInput.click();
+
     }, 300);
 
 }
