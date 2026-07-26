@@ -746,7 +746,7 @@ showTraining();
 }
 
 
-function showCirculars(){
+function showCirculars() {
 
 let circulars = JSON.parse(localStorage.getItem("circulars")) || [];
 
@@ -754,26 +754,28 @@ let html = `
 <h2>📄 Latest Circulars</h2>
 `;
 
-if(circulars.length===0){
+if (circulars.length === 0) {
 
 html += "<p>No Circulars Available</p>";
 
-}else{
+} else {
 
-circulars.forEach(c=>{
+circulars.forEach(c => {
 
 html += `
 <div class="card" style="margin-bottom:20px;">
+
 <h3>${c.title}</h3>
+
 <p>📅 ${c.date}</p>
-<p>${c.pdf}</p>
-<a href="${c.pdf}" target="_blank" style="text-decoration:none;">
+
+<a href="${c.pdf}" target="_blank">
 <button>👁 View PDF</button>
 </a>
 
 &nbsp;
 
-<a href="${c.pdf}" target="_blank" download="${c.title}.pdf" style="text-decoration:none;">
+<a href="${c.pdf}" download>
 <button>⬇ Download PDF</button>
 </a>
 
