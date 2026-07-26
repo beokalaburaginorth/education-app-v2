@@ -817,7 +817,8 @@ async function uploadCircular() {
     });
 
     const data = await res.json();
-
+console.log(data);
+alert(JSON.stringify(data));
     if (!data.secure_url) {
       document.getElementById("circularStatus").innerHTML =
         "❌ Upload Failed";
