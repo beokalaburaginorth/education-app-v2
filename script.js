@@ -769,7 +769,7 @@ html += `
 <p style="word-break:break-all;">${c.pdf}</p>
 <p>📅 ${c.date}</p>
 
-<a href="${c.pdf}" target="_blank" rel="noopener">
+<a href="${c.pdf}?download=1" target="_blank">
 <button>👁 View PDF</button>
 </a>
 
