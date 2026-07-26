@@ -522,29 +522,7 @@ document.getElementById("output").innerHTML = `
 }
 
 
-function showCircularManager(){
 
-document.getElementById("output").innerHTML = `
-
-<h2>📄 Circular Manager</h2>
-
-<input type="file" id="circularFile" accept=".pdf">
-
-<br><br>
-
-<input type="text" id="circularTitle" placeholder="Circular Title">
-
-<br><br>
-
-<button onclick="uploadCircular()">📤 Upload PDF</button>
-
-<hr>
-
-<div id="circularStatus"></div>
-
-`;
-
-}
 
 function showDownloadManager(){
 
