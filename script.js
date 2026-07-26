@@ -766,7 +766,7 @@ html += `
 <div class="card" style="margin-bottom:20px;">
 
 <h3>${c.title}</h3>
-
+<p style="word-break:break-all;">${c.pdf}</p>
 <p>📅 ${c.date}</p>
 
 <a href="${c.pdf}" target="_blank">
