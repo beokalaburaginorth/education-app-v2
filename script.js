@@ -744,9 +744,7 @@ alert("✅ Photo Deleted Successfully");
 showTraining();
 
 }
-function deletePhoto(imageUrl){
-    alert("Delete button working");
-}
+
 
 function showCirculars(){
 
