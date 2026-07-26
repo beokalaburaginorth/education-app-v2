@@ -877,3 +877,6 @@ function editCircular(index) {
     alert("Circular updated successfully.");
   }
 }
+function changeCircularPDF(index) {
+    alert("Change PDF feature will be added in the next step.");
+}
