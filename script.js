@@ -767,12 +767,14 @@ html += `
 <h3>${c.title}</h3>
 <p>📅 ${c.date}</p>
 <p>${c.pdf}</p>
-<a href="${c.pdf}" target="_blank">
+<a href="${c.pdf}" target="_blank" style="text-decoration:none;">
 <button>👁 View PDF</button>
 </a>
 
-<a href="${c.pdf}" download>
-<button>⬇ Download</button>
+&nbsp;
+
+<a href="${c.pdf}" target="_blank" download="${c.title}.pdf" style="text-decoration:none;">
+<button>⬇ Download PDF</button>
 </a>
 
 </div>
