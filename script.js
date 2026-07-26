@@ -877,6 +877,19 @@ function editCircular(index) {
     alert("Circular updated successfully.");
   }
 }
-function changeCircularPDF(index) {
-    alert("Change PDF feature will be added in the next step.");
+async function changeCircularPDF(index) {
+
+  const input = document.getElementById("editCircularFile");
+
+  input.click();
+
+  input.onchange = async function () {
+
+    const file = input.files[0];
+
+    if (!file) return;
+
+    alert("PDF selected successfully.");
+  };
+
 }
