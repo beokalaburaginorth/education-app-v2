@@ -772,12 +772,7 @@ html += `
 <a href="${c.pdf}?download=1" target="_blank">
 <button>👁 View PDF</button>
 </a>
-<button onclick="editCircular(${index})">✏ Edit</button>
-<button onclick="changeCircularPDF(${index})">📄 Change PDF</button>
-<button onclick="deleteCircular(${index})"
-style="background:red;color:white;">
-🗑 Delete
-</button>
+
 &nbsp;
 
 <a href="${c.pdf}" download>
