@@ -846,7 +846,9 @@ alert(JSON.stringify(data));
 
     document.getElementById("circularStatus").innerHTML =
       "✅ Circular Uploaded Successfully";
-
+document.getElementById("circularFile").value = "";
+document.getElementById("circularTitle").value = "";
+showCirculars();
   } catch (e) {
 
     document.getElementById("circularStatus").innerHTML =
