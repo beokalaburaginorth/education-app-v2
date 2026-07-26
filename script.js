@@ -709,54 +709,7 @@ document.getElementById("galleryStatus").innerHTML="❌ Upload Failed";
 }
 
 
-async function uploadCircular() {
 
-const file = document.getElementById("circularFile").files[0];
-const title = document.getElementById("circularTitle").value;
-
-if(!file){
-alert("Please Select PDF");
-return;
-}
-
-const formData = new FormData();
-formData.append("file", file);
-formData.append("upload_preset", "beo_gallery");
-
-document.getElementById("circularStatus").innerHTML = "Uploading...";
-
-try{
-
-const res = await fetch("https://api.cloudinary.com/v1_1/ycyleyq2/raw/upload",{
-method:"POST",
-body:formData
-});
-
-const data = await res.json(); 
-console.log(data);
-alert(JSON.stringify(data)); 
-alert(data.secure_url);
-let circulars = JSON.parse(localStorage.getItem("circulars")) || [];
-
-circulars.push({
-title:title,
-pdf:data.secure_url,
-date:new Date().toLocaleDateString()
-});
-
-localStorage.setItem("circulars", JSON.stringify(circulars));
-
-document.getElementById("circularStatus").innerHTML =
-"✅ Circular Uploaded Successfully";
-
-}catch(e){
-
-document.getElementById("circularStatus").innerHTML =
-"❌ Upload Failed";
-
-}
-
-}
 function uploadDownload(){
 
 const file = document.getElementById("downloadFile").files[0];
@@ -816,45 +769,7 @@ showTraining();
 function deletePhoto(imageUrl){
     alert("Delete button working");
 }
-async function uploadCircular(){
 
-const file = document.getElementById("circularFile").files[0];
-const title = document.getElementById("circularTitle").value;
-
-if(!file){
-alert("Please Select PDF");
-return;
-}
-
-document.getElementById("circularStatus").innerHTML =
-"⏳ Uploading PDF...";
-
-const formData = new FormData();
-
-formData.append("file", file);
-formData.append("upload_preset", "beo_gallery");
-
-const res = await fetch("https://api.cloudinary.com/v1_1/ycyleyq2/auto/upload", {
-method:"POST",
-body:formData
-});
-
-const data = await res.json();
-console.log(data);
-let circulars = JSON.parse(localStorage.getItem("circulars")) || [];
-
-circulars.push({
-title:title,
-url:data.secure_url,
-date:new Date().toLocaleDateString()
-});
-
-localStorage.setItem("circulars", JSON.stringify(circulars));
-
-document.getElementById("circularStatus").innerHTML =
-"✅ Circular Uploaded Successfully";
-
-}
 function showCirculars(){
 
 let circulars = JSON.parse(localStorage.getItem("circulars")) || [];
@@ -898,4 +813,59 @@ html += `
 
 document.getElementById("output").innerHTML = html;
 
+}
+async function uploadCircular() {
+
+  const file = document.getElementById("circularFile").files[0];
+  const title = document.getElementById("circularTitle").value;
+
+  if (!file) {
+    alert("Please Select PDF");
+    return;
+  }
+
+  document.getElementById("circularStatus").innerHTML =
+    "⏳ Uploading PDF...";
+
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", "beo_gallery");
+
+  try {
+
+    const res = await fetch("https://api.cloudinary.com/v1_1/ycyleyq2/raw/upload", {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await res.json();
+
+    if (!data.secure_url) {
+      document.getElementById("circularStatus").innerHTML =
+        "❌ Upload Failed";
+      console.log(data);
+      return;
+    }
+
+    let circulars =
+      JSON.parse(localStorage.getItem("circulars")) || [];
+
+    circulars.push({
+      title: title,
+      pdf: data.secure_url,
+      date: new Date().toLocaleDateString()
+    });
+
+    localStorage.setItem("circulars", JSON.stringify(circulars));
+
+    document.getElementById("circularStatus").innerHTML =
+      "✅ Circular Uploaded Successfully";
+
+  } catch (e) {
+
+    document.getElementById("circularStatus").innerHTML =
+      "❌ Upload Failed";
+
+    console.log(e);
+  }
 }
