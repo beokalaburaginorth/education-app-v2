@@ -833,7 +833,7 @@ alert(JSON.stringify(data));
 
     circulars.push({
       title: title,
-      pdf: data.secure_url,
+      pdf: (data.secure_url || data.url).replace("http://", "https://"),
       date: new Date().toLocaleDateString()
     });
 
