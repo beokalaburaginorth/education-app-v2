@@ -253,7 +253,7 @@ document.getElementById("output").innerHTML = `
 <h2>📄 Circular Manager</h2>
 
 <input type="file" id="circularFile" accept=".pdf">
-
+<input type="file" id="editCircularFile" accept=".pdf" style="display:none;">
 <br><br>
 
 <input type="text" id="circularTitle" placeholder="Circular Title">
