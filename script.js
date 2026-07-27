@@ -884,8 +884,6 @@ function editCircular(index) {
   }
 }
 
-}
-
 function searchCircular() {
 
     let input = document.getElementById("searchCircular").value.toLowerCase();
