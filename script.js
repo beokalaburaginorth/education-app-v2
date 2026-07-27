@@ -883,7 +883,7 @@ function editCircular(index) {
     alert("Circular updated successfully.");
   }
 }
-}
+
 }
 
 function searchCircular() {
