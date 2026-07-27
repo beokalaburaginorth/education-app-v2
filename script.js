@@ -271,7 +271,7 @@ document.getElementById("output").innerHTML = `
 <div id="circularStatus"></div>
 
 `;
-showManageCirculars();
+
 }
 function showContact() {
 
