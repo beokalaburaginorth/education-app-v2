@@ -878,21 +878,29 @@ function editCircular(index) {
     alert("Circular updated successfully.");
   }
 }
-function changeCircularPDF(index) {
+function showManageCirculars() {
 
-    showCircularManager();
+    let circulars = JSON.parse(localStorage.getItem("circulars")) || [];
+    let html = "";
 
-    setTimeout(function () {
+    circulars.forEach((c, index) => {
 
-        const fileInput = document.getElementById("editCircularFile");
+        html += `
+        <div class="card" style="margin-bottom:10px;">
+            <b>${c.title}</b><br><br>
 
-        if (!fileInput) {
-            alert("Edit PDF input not found.");
-            return;
-        }
+            <button onclick="editCircular(${index})">✏ Edit</button>
 
-        fileInput.click();
+            <button onclick="deleteCircular(${index})"
+            style="background:red;color:white;">
+            🗑 Delete
+            </button>
 
-    }, 300);
+        </div>
+        `;
+
+    });
+
+    document.getElementById("manageCirculars").innerHTML = html;
 
 }
