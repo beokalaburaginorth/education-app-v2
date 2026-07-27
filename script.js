@@ -883,6 +883,30 @@ function editCircular(index) {
     alert("Circular updated successfully.");
   }
 }
+}
+}
+
+function searchCircular() {
+
+    let input = document.getElementById("searchCircular").value.toLowerCase();
+
+    let cards = document.querySelectorAll(".card");
+
+    cards.forEach(function(card) {
+
+        let title = card.querySelector("h3").innerText.toLowerCase();
+
+        if (title.includes(input)) {
+            card.style.display = "";
+        } else {
+            card.style.display = "none";
+        }
+
+    });
+
+}
+
+function showManageCirculars() {
 function showManageCirculars() {
 
     let circulars = JSON.parse(localStorage.getItem("circulars")) || [];
