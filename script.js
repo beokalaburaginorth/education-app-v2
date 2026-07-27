@@ -905,7 +905,7 @@ function searchCircular() {
 }
 
 function showManageCirculars() {
-function showManageCirculars() {
+
 
     let circulars = JSON.parse(localStorage.getItem("circulars")) || [];
     let html = "";
