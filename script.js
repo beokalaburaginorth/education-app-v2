@@ -756,6 +756,11 @@ let circulars = JSON.parse(localStorage.getItem("circulars")) || [];
 
 let html = `
 <h2>📄 Latest Circulars</h2>
+<input type="text"
+id="searchCircular"
+placeholder="Search Circular..."
+onkeyup="searchCircular()"
+style="width:100%;padding:10px;margin:10px 0;">
 `;
 
 if (circulars.length === 0) {
