@@ -774,7 +774,10 @@ circulars.forEach((c, index) => {
 html += `
 <div class="card" style="margin-bottom:20px;">
 
-<h3>${c.title}</h3>
+<h3>
+${c.title}
+${index == 0 ? '<span style="background:red;color:white;padding:2px 6px;border-radius:5px;font-size:12px;">NEW</span>' : ''}
+</h3>
 <p style="word-break:break-all;">${c.pdf}</p>
 <p>📅 ${c.date}</p>
 
