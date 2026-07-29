@@ -896,6 +896,7 @@ function pinCircular(index) {
     alert("📌 Circular pinned successfully.");
 
     showManageCirculars();
+showCirculars();
 
 }
 function searchCircular() {
