@@ -883,7 +883,21 @@ function editCircular(index) {
     alert("Circular updated successfully.");
   }
 }
+function pinCircular(index) {
 
+    let circulars = JSON.parse(localStorage.getItem("circulars")) || [];
+
+    let pinned = circulars.splice(index, 1)[0];
+
+    circulars.unshift(pinned);
+
+    localStorage.setItem("circulars", JSON.stringify(circulars));
+
+    alert("📌 Circular pinned successfully.");
+
+    showManageCirculars();
+
+}
 function searchCircular() {
 
     let input = document.getElementById("searchCircular").value.toLowerCase();
@@ -919,7 +933,7 @@ function showManageCirculars() {
             <b>${c.title}</b><br><br>
 
             <button onclick="editCircular(${index})">✏ Edit</button>
-
+<button onclick="pinCircular(${index})">📌 Pin</button>
             <button onclick="deleteCircular(${index})"
             style="background:red;color:white;">
             🗑 Delete
