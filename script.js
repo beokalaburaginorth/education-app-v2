@@ -895,7 +895,10 @@ function pinCircular(index) {
 
     alert("📌 Circular pinned successfully.");
 
+    if (document.getElementById("manageCirculars")) {
     showManageCirculars();
+}
+showCirculars();
 showCirculars();
 
 }
