@@ -892,16 +892,18 @@ function searchCircular() {
 
     cards.forEach(function(card) {
 
-        let title = card.querySelector("h3").innerText.toLowerCase();
+    let h3 = card.querySelector("h3");
+    if (!h3) return;
 
-        if (title.includes(input)) {
-            card.style.display = "";
-        } else {
-            card.style.display = "none";
-        }
+    let title = h3.innerText.toLowerCase();
 
-    });
+    if (title.includes(input)) {
+        card.style.display = "";
+    } else {
+        card.style.display = "none";
+    }
 
+});
 }
 
 function showManageCirculars() {
