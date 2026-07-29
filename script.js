@@ -753,7 +753,7 @@ showTraining();
 function showCirculars() {
 
 let circulars = JSON.parse(localStorage.getItem("circulars")) || [];
-
+circulars.reverse();
 let html = `
 <h2>📄 Latest Circulars</h2>
 <input type="text"
