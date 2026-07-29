@@ -948,6 +948,8 @@ function showManageCirculars() {
 
     });
 
-    document.getElementById("manageCirculars").innerHTML = html;
-
+   const box = document.getElementById("manageCirculars");
+if (box) {
+    box.innerHTML = html;
+}
 }
