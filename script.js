@@ -889,7 +889,7 @@ function pinCircular(index) {
     let circulars = JSON.parse(localStorage.getItem("circulars")) || [];
 
     let pinned = circulars.splice(index, 1)[0];
-
+pinned.pinned = true;
     circulars.unshift(pinned);
 
     localStorage.setItem("circulars", JSON.stringify(circulars));
