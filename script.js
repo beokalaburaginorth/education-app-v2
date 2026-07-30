@@ -257,7 +257,15 @@ document.getElementById("output").innerHTML = `
 <br><br>
 
 <input type="text" id="circularTitle" placeholder="Circular Title">
+<br><br>
 
+<select id="circularCategory">
+  <option value="Circular">📄 Circular</option>
+  <option value="Order">📜 Order</option>
+  <option value="Notification">🔔 Notification</option>
+</select>
+
+<br><br>
 <br><br>
 
 <button onclick="uploadCircular()">📤 Upload Circular</button>
