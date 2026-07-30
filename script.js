@@ -764,6 +764,12 @@ let circulars = JSON.parse(localStorage.getItem("circulars")) || [];
   circulars.sort((a, b) => (b.pinned || false) - (a.pinned || false));
 
 let html = `
+<select id="categoryFilter" onchange="showCirculars()" style="width:100%;padding:10px;margin:10px 0;">
+  <option value="All">📂 All Categories</option>
+  <option value="Circular">📄 Circular</option>
+  <option value="Order">📜 Order</option>
+  <option value="Notification">🔔 Notification</option>
+</select>
 <h2>📄 Latest Circulars</h2>
 <input type="text"
 id="searchCircular"
