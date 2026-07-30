@@ -816,7 +816,7 @@ async function uploadCircular() {
 
   const file = document.getElementById("circularFile").files[0];
   const title = document.getElementById("circularTitle").value;
-
+const category = document.getElementById("circularCategory").value;
   if (!file) {
     alert("Please Select PDF");
     return;
@@ -850,10 +850,11 @@ alert(JSON.stringify(data));
       JSON.parse(localStorage.getItem("circulars")) || [];
 
     circulars.push({
-      title: title,
-      pdf: (data.secure_url || data.url).replace("http://", "https://"),
-      date: new Date().toLocaleDateString()
-    });
+    title: title,
+    category: category,
+    pdf: (data.secure_url || data.url).replace("http://", "https://"),
+    date: new Date().toLocaleDateString()
+});
 
     localStorage.setItem("circulars", JSON.stringify(circulars));
 
