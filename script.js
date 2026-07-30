@@ -900,7 +900,6 @@ function pinCircular(index) {
     showManageCirculars();
 }
 showCirculars();
-showCirculars();
 
 }
 function searchCircular() {
