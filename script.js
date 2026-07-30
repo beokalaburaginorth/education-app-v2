@@ -948,7 +948,7 @@ function showManageCirculars() {
 
     });
 
-   const box = document.getElementById("manageCirculars");
+const box = document.getElementById("manageCirculars");
 if (box) {
     box.innerHTML = html;
 }
