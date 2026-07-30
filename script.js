@@ -754,7 +754,7 @@ function showCirculars() {
 
 let circulars = JSON.parse(localStorage.getItem("circulars")) || [];
   circulars.sort((a, b) => (b.pinned || false) - (a.pinned || false));
-circulars.reverse();
+
 let html = `
 <h2>📄 Latest Circulars</h2>
 <input type="text"
