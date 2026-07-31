@@ -778,7 +778,16 @@ if (circulars.length === 0) {
 html += "<p>No Circulars Available</p>";
 
 } else {
+} else {
 
+    let selectedCategory =
+        document.getElementById("categoryFilter")?.value || "All";
+
+    if (selectedCategory !== "All") {
+        circulars = circulars.filter(c => c.category === selectedCategory);
+    }
+
+    circulars.forEach((c, index) => {
 circulars.forEach((c, index) => {
 
 html += `
