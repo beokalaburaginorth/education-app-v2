@@ -800,7 +800,13 @@ NEW
 <p style="word-break:break-all;">${c.pdf}</p>
 <p>
 <span style="background:#0d6efd;color:white;padding:3px 8px;border-radius:10px;font-size:12px;">
-${c.category || "Circular"}
+${
+c.category === "Order"
+? "📜 Order"
+: c.category === "Notification"
+? "🔔 Notification"
+: "📄 Circular"
+}
 </span>
 </p>
 <p>📅 ${c.date}</p>
