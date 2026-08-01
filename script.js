@@ -1000,8 +1000,9 @@ if (box) {
 }
 }
 function showTeacherReports() {
+    alert("Teacher Reports Opened");
+}
 
-document.getElementById("output").innerHTML = `
 
 <h2>👨‍🏫 Teacher Reports</h2>
 
