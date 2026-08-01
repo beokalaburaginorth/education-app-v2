@@ -298,6 +298,12 @@ function showContact() {
   `;
 
 }
+function showAidedSchools() {
+    document.getElementById("output").innerHTML = `
+        <h2>🏢 Aided School Master</h2>
+        <p>Cluster-wise Aided School List</p>
+    `;
+}
 function showGallery() {
 
   document.getElementById("output").innerHTML = `
