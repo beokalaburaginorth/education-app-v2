@@ -1270,5 +1270,5 @@ const schools = [
   name: "GHS KSRP COLONY TAJSULTANPUR",
   cluster: "TAJSULTANPUR",
   type: "HS"
-},
 }
+];
