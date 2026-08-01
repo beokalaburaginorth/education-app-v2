@@ -1070,42 +1070,29 @@ function downloadTeacherExcel() {
     alert("Excel Download Coming Soon");
 }
 function loadAidedClusters() {
+    const cluster = document.getElementById("aidedCluster");
 
-  const cluster = document.getElementById("aidedCluster");
+    cluster.innerHTML = '<option value="">-- Select Cluster --</option>';
 
-  cluster.innerHTML = '<option value="">-- Select Cluster --</option>';
+    const clusters = [...new Set(
+        aidedSchools.map(s => s.cluster)
+    )].sort();
 
-  const aidedClusters = [...new Set(
-    schools
-      .filter(s => s.type.startsWith("AIDED"))
-      .map(s => s.cluster)
-  )].sort();
-
-  aidedClusters.forEach(c => {
-    cluster.innerHTML += `<option value="${c}">${c}</option>`;
-  });
-
+    clusters.forEach(c => {
+        cluster.innerHTML += `<option value="${c}">${c}</option>`;
+    });
 }
-function loadAidedSchools() {
+}
+function loadAidedClusters() {
+    const cluster = document.getElementById("aidedCluster");
 
-  const cluster = document.getElementById("aidedCluster").value;
-  const school = document.getElementById("aidedSchool");
+    cluster.innerHTML = '<option value="">-- Select Cluster --</option>';
 
-  school.innerHTML = '<option>-- Select School --</option>';
+    const clusters = [...new Set(
+        aidedSchools.map(s => s.cluster)
+    )].sort();
 
-  const list = schools.filter(s =>
-      s.cluster === cluster &&
-      s.type.startsWith("AIDED")
-  );
-
-  list.forEach(s => {
-    school.innerHTML += `
-      <option value="${s.dise}">
-        ${s.name}
-      </option>`;
-  });
-
-  document.getElementById("aidedCount").innerHTML =
-      "Total Aided Schools : " + list.length;
-
+    clusters.forEach(c => {
+        cluster.innerHTML += `<option value="${c}">${c}</option>`;
+    });
 }
