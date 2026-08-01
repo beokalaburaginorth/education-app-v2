@@ -1,1 +1,56 @@
-
+const aidedSchools = [
+{
+  cluster: "ADARSHA NAGAR URDU",
+  name: "A.N. AMBALGI MEMO KHAJA COLONY (29041107816)",
+  dise: "29041107816",
+  type: "AIDED HPS"
+},
+{
+  cluster: "ADARSHA NAGAR URDU",
+  name: "AIDED CHILDREN WELFARE HPS ROZ (29041107409)",
+  dise: "29041107409",
+  type: "AIDED HPS"
+},
+{
+  cluster: "ADARSHA NAGAR URDU",
+  name: "AL AMEEN HPS BATLI ALWA (ADD) (29041108404)",
+  dise: "29041108404",
+  type: "AIDED HPS"
+},
+{
+  cluster: "ADARSHA NAGAR URDU",
+  name: "AL AMEEN HPS SANTRASWADI (29041108508)",
+  dise: "29041108508",
+  type: "AIDED HPS"
+},
+{
+  cluster: "ADARSHA NAGAR URDU",
+  name: "AL AMEEN LPS ROZATAIN(ADD) (29041107307",
+  dise: "29041107307",
+  type: "AIDED HPS"
+},
+{
+  cluster: "ADARSHA NAGAR URDU",
+  name: "AL-AMEEN URDU HPS KHUNIALAWA MOMINPURA KALBURGI (29041108403)",
+  dise: "29041108403",
+  type: "AIDED HPS"
+},
+{
+  cluster: "ADARSHA NAGAR URDU",
+  name: "ANWAR URDU HPS MAKKA COLONY (29041108108)",
+  dise: "29041108108",
+  type: "AIDED HPS"
+},
+{
+  cluster: "ADARSHA NAGAR URDU",
+  name: "FATIMI URDU AIDED HPS NORANNI MOHALL (29041107918)",
+  dise: "29041107918",
+  type: "AIDED HPS"
+},
+{
+  cluster: "ADARSHA NAGAR URDU",
+  name: "ISLAMIYA URDU HPS KHAMAR CLNY (29041107312)",
+  dise: "29041107312",
+  type: "AIDED HPS"
+}
+];
