@@ -1272,3 +1272,33 @@ const schools = [
     type: "HS"
   }
 ];
+{
+  cluster: "ADARSHA NAGAR URDU",
+  name: "A.N. AMBALGI MEMO KHAJA COLONY (29041107816)",
+  dise: "29041107816",
+  type: "AIDED HPS"
+},
+{
+  cluster: "ADARSHA NAGAR URDU",
+  name: "AIDED CHILDREN WELFARE HPS ROZ (29041107409)",
+  dise: "29041107409",
+  type: "AIDED HPS"
+},
+{
+  cluster: "ADARSHA NAGAR URDU",
+  name: "AL AMEEN HPS BATLI ALWA (ADD) (29041108404)",
+  dise: "29041108404",
+  type: "AIDED HPS"
+},
+{
+  cluster: "ADARSHA NAGAR URDU",
+  name: "AL AMEEN HPS SANTRASWADI (29041108508)",
+  dise: "29041108508",
+  type: "AIDED HPS"
+},
+{
+  cluster: "ADARSHA NAGAR URDU",
+  name: "AL AMEEN LPS ROZATAIN (29041107307)",
+  dise: "29041107307",
+  type: "AIDED HPS"
+},
