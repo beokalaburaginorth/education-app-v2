@@ -1301,5 +1301,5 @@ const schools = [
   name: "AL AMEEN LPS ROZATAIN (29041107307)",
   dise: "29041107307",
   type: "AIDED HPS"
-},
+}
 ];
