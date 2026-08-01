@@ -1271,7 +1271,7 @@ const schools = [
     cluster: "TAJSULTANPUR",
     type: "HS"
   }
-];
+
 {
   cluster: "ADARSHA NAGAR URDU",
   name: "A.N. AMBALGI MEMO KHAJA COLONY (29041107816)",
@@ -1302,3 +1302,4 @@ const schools = [
   dise: "29041107307",
   type: "AIDED HPS"
 },
+];
