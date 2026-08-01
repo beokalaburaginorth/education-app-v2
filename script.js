@@ -299,10 +299,25 @@ function showContact() {
 
 }
 function showAidedSchools() {
-    document.getElementById("output").innerHTML = `
-        <h2>🏢 Aided School Master</h2>
-        <p>Cluster-wise Aided School List</p>
-    `;
+  document.getElementById("output").innerHTML = `
+    <h2>🏢 Aided School Master</h2>
+
+    <label><b>Select Cluster</b></label><br>
+    <select id="aidedCluster" onchange="loadAidedSchools()">
+      <option value="">-- Select Cluster --</option>
+    </select>
+
+    <br><br>
+
+    <label><b>Select School</b></label><br>
+    <select id="aidedSchool">
+      <option>-- Select School --</option>
+    </select>
+
+    <div id="aidedCount" style="margin-top:15px;font-weight:bold;color:green;"></div>
+  `;
+
+  loadAidedClusters();
 }
 function showGallery() {
 
