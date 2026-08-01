@@ -1265,12 +1265,12 @@ const schools = [
     cluster: "TAJSULTANPUR",
     type: "LPS"
   },
-  {
-    dise: "29041105912",
-    name: "GHS KSRP COLONY TAJSULTANPUR",
-    cluster: "TAJSULTANPUR",
-    type: "HS"
-  }
+ {
+  dise: "29041105912",
+  name: "GHS KSRP COLONY TAJSULTANPUR",
+  cluster: "TAJSULTANPUR",
+  type: "HS"
+},
 
 {
   cluster: "ADARSHA NAGAR URDU",
