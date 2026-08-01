@@ -52,5 +52,59 @@ const aidedSchools = [
   name: "ISLAMIYA URDU HPS KHAMAR CLNY (29041107312)",
   dise: "29041107312",
   type: "AIDED HPS"
+},
+{
+  cluster: "ADARSHA NAGAR URDU",
+  name: "KHUSRO HPS (U) BULAND PARVEZ COLONY (29041107436)",
+  dise: "29041107436",
+  type: "AIDED HPS"
+},
+{
+  cluster: "ADARSHA NAGAR URDU",
+  name: "PEERBANGALI URDU HPS (29041108607)",
+  dise: "29041108607",
+  type: "AIDED HPS"
+},
+{
+  cluster: "ADARSHA NAGAR URDU",
+  name: "MOHAMMADI PRACTICING HS MIJAGURI (29041110301)",
+  dise: "29041110301",
+  type: "AIDED HS"
+},
+{
+  cluster: "ANKALAGA",
+  name: "SHRI CHENNAVEER SHIVAYOGI MEMORIAL H.S KURIKOTA (29041104104)",
+  dise: "29041104104",
+  type: "AIDED HS"
+},
+{
+  cluster: "ASIF GUNJ",
+  name: "CHETAN HPS GAJIPUR (29041109209)",
+  dise: "29041109209",
+  type: "AIDED HPS"
+},
+{
+  cluster: "ASIF GUNJ",
+  name: "HINGULAMBIKA HPS BHAVNI NAGAR (29041108502)",
+  dise: "29041108502",
+  type: "AIDED HPS"
+},
+{
+  cluster: "ASIF GUNJ",
+  name: "MATOSHRI RAMABAI AMBEDKAR HPS JAGAT (29041107920)",
+  dise: "29041107920",
+  type: "AIDED HPS"
+},
+{
+  cluster: "ASIF GUNJ",
+  name: "ROOP SINHA CHATURBUJ HPS GLB (29041108201)",
+  dise: "29041108201",
+  type: "AIDED HPS"
+},
+{
+  cluster: "ASIF GUNJ",
+  name: "CHETAN YOUTH FORUM HS GAZIPUR (29041109201)",
+  dise: "29041109201",
+  type: "AIDED HS"
 }
-];
+  
