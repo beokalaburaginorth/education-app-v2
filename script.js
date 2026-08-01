@@ -1069,30 +1069,20 @@ function downloadTeacherPDF() {
 function downloadTeacherExcel() {
     alert("Excel Download Coming Soon");
 }
-function loadAidedClusters() {
-    const cluster = document.getElementById("aidedCluster");
+function loadAidedSchools() {
 
-    cluster.innerHTML = '<option value="">-- Select Cluster --</option>';
+    const cluster = document.getElementById("aidedCluster").value;
+    const school = document.getElementById("aidedSchool");
 
-    const clusters = [...new Set(
-        aidedSchools.map(s => s.cluster)
-    )].sort();
+    school.innerHTML = '<option value="">-- Select School --</option>';
 
-    clusters.forEach(c => {
-        cluster.innerHTML += `<option value="${c}">${c}</option>`;
+    const list = aidedSchools.filter(s => s.cluster === cluster);
+
+    list.forEach(s => {
+        school.innerHTML +=
+        `<option value="${s.dise}">${s.name}</option>`;
     });
-}
-}
-function loadAidedClusters() {
-    const cluster = document.getElementById("aidedCluster");
 
-    cluster.innerHTML = '<option value="">-- Select Cluster --</option>';
-
-    const clusters = [...new Set(
-        aidedSchools.map(s => s.cluster)
-    )].sort();
-
-    clusters.forEach(c => {
-        cluster.innerHTML += `<option value="${c}">${c}</option>`;
-    });
+    document.getElementById("aidedCount").innerHTML =
+        "Total Aided Schools : " + list.length;
 }
