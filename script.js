@@ -999,34 +999,44 @@ if (box) {
     box.innerHTML = html;
 }
 }
-function showTeacherReports() {
-    alert("Teacher Reports Opened");
-}
 
+function showTeacherReports() {
+
+document.getElementById("output").innerHTML = `
 
 <h2>👨‍🏫 Teacher Reports</h2>
 
 <select id="schoolSelect" style="width:100%;padding:10px;margin:10px 0;">
-    <option>Select School</option>
-    <option>GHS Tajsultanpur</option>
-    <option>GHPS Kalaburagi</option>
-    <option>GPS Shahabad Road</option>
+<option>Select School</option>
+<option>GHS Tajsultanpur</option>
+<option>GHPS Kalaburagi</option>
+<option>GPS Shahabad Road</option>
 </select>
 
 <br><br>
 
 <button onclick="viewTeachers()">👥 View Teachers</button>
 
-&nbsp;
-
 <button onclick="downloadTeacherPDF()">📄 Download PDF</button>
-
-&nbsp;
 
 <button onclick="downloadTeacherExcel()">📊 Download Excel</button>
 
 `;
+
 }
+
+function viewTeachers(){
+alert("Teacher List Coming Soon");
+}
+
+function downloadTeacherPDF(){
+alert("PDF Download Coming Soon");
+}
+
+function downloadTeacherExcel(){
+alert("Excel Download Coming Soon");
+}
+
 function viewTeachers() {
     alert("Teacher List Coming Soon");
 }
