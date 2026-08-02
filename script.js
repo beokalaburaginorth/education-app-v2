@@ -1099,3 +1099,28 @@ function loadAidedClusters() {
   });
 
 }
+function showAidedTeacherReports() {
+  document.getElementById("output").innerHTML = `
+    <h2>👨‍🏫 Aided Teacher Reports</h2>
+
+    <label><b>Select Cluster</b></label><br>
+    <select id="aidedTeacherCluster" onchange="loadAidedTeacherSchools()">
+      <option value="">-- Select Cluster --</option>
+    </select>
+
+    <br><br>
+
+    <label><b>Select School</b></label><br>
+    <select id="aidedTeacherSchool">
+      <option value="">-- Select School --</option>
+    </select>
+
+    <br><br>
+
+    <button onclick="showAidedTeacherList()">View Teachers</button>
+
+    <div id="teacherResult" style="margin-top:20px;"></div>
+  `;
+
+  loadAidedTeacherClusters();
+}
