@@ -152,23 +152,80 @@ function showDownloads() {
   `);
 }
 
-function showGallery() {
+function showGallery(){
 
-    setContent(`
-        <h2>🖼 Gallery</h2>
+let gallery = JSON.parse(localStorage.getItem("gallery") || "[]");
 
-        <p>No Images Available.</p>
-    `);
+let html = "<h2>🖼 Gallery</h2>";
+
+if(gallery.length==0){
+
+html += "<p>No Images Available.</p>";
+
+}else{
+
+gallery.forEach((g,index)=>{
+
+html += `
+<div style="margin:20px;padding:15px;border:1px solid #ddd;border-radius:10px;">
+<h3>${g.title}</h3>
+
+<img src="${g.image}" width="250"><br><br>
+
+<p>${g.date}</p>
+
+<button onclick="deleteGallery(${index})">🗑 Delete</button>
+
+</div>
+`;
+
+});
 
 }
 
-function showCirculars() {
+setContent(html);
 
-    setContent(`
-        <h2>📢 Circulars</h2>
+}
 
-        <p>No Circulars Available.</p>
-    `);
+function showCirculars(){
+
+let circulars = JSON.parse(localStorage.getItem("circulars") || "[]");
+
+let html = "<h2>📢 Circulars</h2>";
+
+if(circulars.length==0){
+
+html += "<p>No Circulars Available.</p>";
+
+}else{
+
+circulars.forEach((c,index)=>{
+
+html += `
+<div style="margin:20px;padding:15px;border:1px solid #ddd;border-radius:10px;">
+
+<h3>${c.title}</h3>
+
+<p>${c.date}</p>
+
+<a href="${c.pdf}" target="_blank">
+<button>👁 View PDF</button>
+</a>
+
+<a href="${c.pdf}" download>
+<button>⬇ Download PDF</button>
+</a>
+
+<button onclick="deleteCircular(${index})">🗑 Delete</button>
+
+</div>
+`;
+
+});
+
+}
+
+setContent(html);
 
 }
 
