@@ -127,3 +127,26 @@ font-size:20px;
     color:gray;
     margin-bottom:15px;
 }
+.topbar{
+background:#0f4c81;
+color:#fff;
+padding:12px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-radius:10px;
+margin-bottom:20px;
+}
+
+.topbar .menu button{
+margin-left:10px;
+padding:8px 15px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.topbar .menu button:hover{
+background:#ffd54f;
+}
