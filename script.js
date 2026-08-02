@@ -32,6 +32,7 @@ function showSchools() {
     <br><br>
 
     <div id="schoolDetails"></div>
+html += `
 <hr>
 <div id="clusterCount"></div>
 `;
