@@ -102,17 +102,48 @@
 <h2>☎️ Contact</h2>
 <p>BEO Office</p>
 </div>
-
+<div class="card" onclick="adminLogin()">
+    <h2>🔐 Admin Panel</h2>
+    <p>Manage Portal</p>
+</div>
 </div>
 
-<div id="output"></div>
+<div class="main-layout">
+
+    <div id="output" class="center-content">
+    </div>
+
+    <div class="right-sidebar">
+
+        <h3>📊 Dashboard</h3>
+        <hr>
+
+        <p>🏫 Total Schools : 212</p>
+        <p>🏢 Total Clusters : 21</p>
+        <p>👨‍🏫 Teachers : 0</p>
+        <p>🏫 Aided Schools : 0</p>
+
+        <hr>
+
+        <button class="sidebar-btn" onclick="showDashboard()">
+            Dashboard
+        </button>
+
+        <button class="sidebar-btn" onclick="showCirculars()">
+            Circulars
+        </button>
+
+        <button class="sidebar-btn" onclick="showDownloads()">
+            Downloads
+        </button>
+
+    </div>
+
+</div>
 
 <script src="schools.js"></script>
 <script src="aidedSchools.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
-<div class="card" onclick="adminLogin()">
-    <h2>🔐 Admin Panel</h2>
-    <p>Manage Portal</p>
-</div>
+
