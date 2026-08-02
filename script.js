@@ -204,3 +204,60 @@ function filterGovtSchools(){
     });
 
 }
+// ===============================
+// ADMIN LOGIN
+// ===============================
+
+let isAdmin = false;
+
+function adminLogin() {
+
+    const password = prompt("Enter Admin Password");
+
+    if (password === "beo123") {
+
+        isAdmin = true;
+
+        alert("Admin Login Successful");
+
+        showAdminPanel();
+
+    } else {
+
+        alert("Wrong Password");
+
+    }
+
+}
+
+function showAdminPanel() {
+
+    setContent(`
+
+        <h2>🔐 Admin Panel</h2>
+
+        <hr>
+
+        <button onclick="showGalleryUpload()">🖼 Gallery Upload</button>
+
+        <button onclick="showCircularUpload()">📢 Circular Upload</button>
+
+        <button onclick="logoutAdmin()">🚪 Logout</button>
+
+        <hr>
+
+        <p>Welcome Admin.</p>
+
+    `);
+
+}
+
+function logoutAdmin() {
+
+    isAdmin = false;
+
+    alert("Logged Out");
+
+    showDashboard();
+
+}
