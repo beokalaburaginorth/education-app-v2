@@ -1086,3 +1086,16 @@ function loadAidedSchools() {
     document.getElementById("aidedCount").innerHTML =
         "Total Aided Schools : " + list.length;
 }
+function loadAidedClusters() {
+
+  const cluster = document.getElementById("aidedCluster");
+
+  cluster.innerHTML = '<option value="">-- Select Cluster --</option>';
+
+  const clusters = [...new Set(aidedSchools.map(s => s.cluster))].sort();
+
+  clusters.forEach(c => {
+    cluster.innerHTML += `<option value="${c}">${c}</option>`;
+  });
+
+}
