@@ -1135,3 +1135,17 @@ function loadAidedTeacherClusters() {
     cluster.innerHTML += `<option value="${c}">${c}</option>`;
   });
 }
+function loadAidedTeacherSchools() {
+
+  const cluster = document.getElementById("aidedTeacherCluster").value;
+  const school = document.getElementById("aidedTeacherSchool");
+
+  school.innerHTML = '<option value="">-- Select School --</option>';
+
+  const list = aidedSchools.filter(s => s.cluster === cluster);
+
+  list.forEach(s => {
+    school.innerHTML += `<option value="${s.dise}">${s.name}</option>`;
+  });
+
+}
