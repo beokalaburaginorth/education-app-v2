@@ -288,3 +288,154 @@ function showCircularUpload() {
         <div id="circularStatus"></div>
     `);
 }
+//=============================
+// GALLERY UPLOAD
+//=============================
+
+async function uploadGallery(){
+
+const file=document.getElementById("galleryFile").files[0];
+const title=document.getElementById("galleryTitle").value;
+
+if(!file){
+alert("Select Photo");
+return;
+}
+
+const formData=new FormData();
+formData.append("file",file);
+formData.append("upload_preset","beo_gallery");
+
+document.getElementById("galleryStatus").innerHTML="Uploading...";
+
+const res=await fetch("https://api.cloudinary.com/v1_1/ycyleyq2/image/upload",{
+method:"POST",
+body:formData
+});
+
+const data=await res.json();
+
+let gallery=JSON.parse(localStorage.getItem("gallery")||"[]");
+
+gallery.unshift({
+title:title,
+image:data.secure_url,
+date:new Date().toLocaleDateString()
+});
+
+localStorage.setItem("gallery",JSON.stringify(gallery));
+
+alert("Gallery Upload Success");
+
+showGallery();
+}
+
+//=============================
+// CIRCULAR UPLOAD
+//=============================
+
+async function uploadCircular(){
+
+const file=document.getElementById("circularFile").files[0];
+const title=document.getElementById("circularTitle").value;
+
+if(!file){
+alert("Select PDF");
+return;
+}
+
+const formData=new FormData();
+formData.append("file",file);
+formData.append("upload_preset","beo_gallery");
+
+document.getElementById("circularStatus").innerHTML="Uploading...";
+
+const res=await fetch("https://api.cloudinary.com/v1_1/ycyleyq2/raw/upload",{
+method:"POST",
+body:formData
+});
+
+const data=await res.json();
+
+let circulars=JSON.parse(localStorage.getItem("circulars")||"[]");
+
+circulars.unshift({
+title:title,
+pdf:data.secure_url,
+date:new Date().toLocaleDateString()
+});
+
+localStorage.setItem("circulars",JSON.stringify(circulars));
+
+alert("Circular Upload Success");
+
+showCirculars();
+}
+
+//=============================
+// SHOW GALLERY
+//=============================
+
+function showGallery(){
+
+let gallery=JSON.parse(localStorage.getItem("gallery")||"[]");
+
+let html="<h2>🖼 Gallery</h2>";
+
+if(gallery.length==0){
+html+="<p>No Images Available.</p>";
+}else{
+
+gallery.forEach(g=>{
+html+=`
+<div style="margin:20px">
+<h3>${g.title}</h3>
+<img src="${g.image}" width="250">
+<p>${g.date}</p>
+</div>
+`;
+});
+
+}
+
+setContent(html);
+
+}
+
+//=============================
+// SHOW CIRCULARS
+//=============================
+
+function showCirculars(){
+
+let circulars=JSON.parse(localStorage.getItem("circulars")||"[]");
+
+let html="<h2>📢 Circulars</h2>";
+
+if(circulars.length==0){
+html+="<p>No Circulars Available.</p>";
+}else{
+
+circulars.forEach(c=>{
+html+=`
+<div style="margin:20px">
+<h3>${c.title}</h3>
+<p>${c.date}</p>
+
+<a href="${c.pdf}" target="_blank">
+<button>View PDF</button>
+</a>
+
+<a href="${c.pdf}" download>
+<button>Download PDF</button>
+</a>
+
+</div>
+`;
+});
+
+}
+
+setContent(html);
+
+}
