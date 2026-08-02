@@ -1,1 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel - BEO Kalaburagi North</title>
 
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header">
+    <h1>🔐 BEO Admin Panel</h1>
+    <p>Block Education Office - Kalaburagi North</p>
+</header>
+
+<div class="main-layout">
+
+<aside class="sidebar">
+
+<h3>📂 Category</h3>
+
+<button onclick="showAdminDashboard()">🏠 Dashboard</button>
+
+<button onclick="showGalleryAdmin()">🖼 Gallery</button>
+
+<button onclick="showCircularAdmin()">📢 Circulars</button>
+
+<button onclick="showTeacherAdmin()">👨‍🏫 Teachers</button>
+
+<button onclick="showSchoolAdmin()">🏫 Schools</button>
+
+<button onclick="showDownloadsAdmin()">⬇ Downloads</button>
+
+</aside>
+
+<main class="content">
+
+<div id="adminContent">
+
+<h2>Welcome Admin</h2>
+
+<p>Select any category from the left menu.</p>
+
+</div>
+
+</main>
+
+<aside class="rightbar">
+
+<h3>⚡ Quick Actions</h3>
+
+<button onclick="showGalleryAdmin()">Upload Gallery</button>
+
+<button onclick="showCircularAdmin()">Upload Circular</button>
+
+<button onclick="showTeacherAdmin()">Teacher Data</button>
+
+</aside>
+
+</div>
+
+<script src="data.js"></script>
+<script src="admin.js"></script>
+
+</body>
+</html>
