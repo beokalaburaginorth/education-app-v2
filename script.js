@@ -439,3 +439,38 @@ html+=`
 setContent(html);
 
 }
+// =============================
+// DELETE GALLERY
+// =============================
+
+function deleteGallery(index){
+
+    if(!confirm("Delete this photo?")) return;
+
+    let gallery = JSON.parse(localStorage.getItem("gallery") || "[]");
+
+    gallery.splice(index,1);
+
+    localStorage.setItem("gallery",JSON.stringify(gallery));
+
+    showGallery();
+
+}
+
+// =============================
+// DELETE CIRCULAR
+// =============================
+
+function deleteCircular(index){
+
+    if(!confirm("Delete this circular?")) return;
+
+    let circulars = JSON.parse(localStorage.getItem("circulars") || "[]");
+
+    circulars.splice(index,1);
+
+    localStorage.setItem("circulars",JSON.stringify(circulars));
+
+    showCirculars();
+
+}
