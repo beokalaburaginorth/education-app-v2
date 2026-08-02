@@ -232,3 +232,35 @@ background:#ffd54f;
 .sidebar-btn:hover{
     background:#084298;
 }
+.main-layout{
+    display:flex;
+    gap:20px;
+    align-items:flex-start;
+}
+
+.sidebar{
+    width:20%;
+}
+
+.center-content{
+    width:60%;
+    min-height:600px;
+    background:#fff;
+    border-radius:10px;
+    padding:20px;
+    box-shadow:0 2px 8px rgba(0,0,0,.15);
+}
+
+.right-sidebar{
+    width:20%;
+    background:#fff;
+    border-radius:10px;
+    padding:15px;
+    box-shadow:0 2px 8px rgba(0,0,0,.15);
+}
+
+.sidebar button,
+.right-sidebar button{
+    width:100%;
+    margin:6px 0;
+}
