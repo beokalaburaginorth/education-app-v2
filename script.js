@@ -261,3 +261,30 @@ function logoutAdmin() {
     showDashboard();
 
 }
+function showGalleryUpload() {
+    setContent(`
+        <h2>🖼 Gallery Upload</h2>
+
+        <input type="file" id="galleryFile"><br><br>
+
+        <input type="text" id="galleryTitle" placeholder="Photo Title"><br><br>
+
+        <button onclick="uploadGallery()">Upload Photo</button>
+
+        <div id="galleryStatus"></div>
+    `);
+}
+
+function showCircularUpload() {
+    setContent(`
+        <h2>📢 Circular Upload</h2>
+
+        <input type="file" id="circularFile" accept=".pdf"><br><br>
+
+        <input type="text" id="circularTitle" placeholder="Circular Title"><br><br>
+
+        <button onclick="uploadCircular()">Upload Circular</button>
+
+        <div id="circularStatus"></div>
+    `);
+}
