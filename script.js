@@ -142,15 +142,14 @@ function showTeachers() {
 }
 
 function showDownloads() {
+  setContent(`
+    <h2>📥 Downloads</h2>
 
-    setContent(`
-        <h2>⬇ Downloads</h2>
+    <button onclick="downloadGovtExcel()">📊 Govt Excel</button>
+    <br><br>
 
-        <button onclick="downloadGovtExcel()">📊 Govt Excel</button>
-
-        <button onclick="downloadTeacherExcel()">👨‍🏫 Teacher Excel</button>
-    `);
-
+    <button onclick="downloadTeacherExcel()">👨‍🏫 Teacher Excel</button>
+  `);
 }
 
 function showGallery() {
