@@ -1,38 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Education Management System</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BEO Kalaburagi North Education Portal</title>
+
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<h1>🏛️ BEO Kalaburagi North Education Portal</h1>
-<p>Government of Karnataka - Department of School Education</p>
-<hr>
-<div class="topbar">
-  <div class="title">
-    🏫 BEO Kalaburagi North Education Portal
-  </div>
+<header class="header">
+    <h1>🏛️ BEO Kalaburagi North Education Portal</h1>
+    <p>Government of Karnataka - Department of School Education</p>
+</header>
 
-  <div class="menu">
+<nav class="topbar">
     <button onclick="showDashboard()">Dashboard</button>
     <button onclick="showSchools()">Govt Schools</button>
     <button onclick="showAidedSchools()">Aided Schools</button>
-    <button onclick="showTeacherReports()">Teachers</button>
+    <button onclick="showTeachers()">Teachers</button>
     <button onclick="showDownloads()">Downloads</button>
-  </div>
-</div>
-<div class="container">
+</nav>
+
 <div class="main-layout">
 
-    <aside class="sidebar" id="leftMenu"></aside>
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
 
-    <main class="center-content">
-        <div id="output"></div>
+        <h3>📋 Quick Menu</h3>
+
+        <button onclick="showDashboard()">📊 Dashboard</button>
+
+        <button onclick="showSchools()">🏫 Govt Schools</button>
+
+        <button onclick="showAidedSchools()">🏢 Aided Schools</button>
+
+        <button onclick="showTeachers()">👨‍🏫 Teachers</button>
+
+        <button onclick="showAidedTeacherReports()">👥 Aided Teachers</button>
+
+        <button onclick="showDownloads()">⬇ Downloads</button>
+
+        <button onclick="showGallery()">🖼 Gallery</button>
+
+        <button onclick="showCirculars()">📢 Circulars</button>
+
+        <button onclick="showContact()">☎ Contact</button>
+
+    </aside>
+
+    <!-- CENTER -->
+    <main class="content">
+
+        <div id="output">
+
+            <h2>Dashboard</h2>
+
+            <p>Welcome to BEO Kalaburagi North Education Portal.</p>
+
+        </div>
+
     </main>
 
-    <aside class="right-sidebar" id="rightPanel"></aside>
+    <!-- RIGHT SIDEBAR -->
+
+    <aside class="rightbar">
+
+        <h3>📊 Statistics</h3>
+
+        <p>🏫 Schools : 212</p>
+
+        <p>📍 Clusters : 21</p>
+
+        <p>👨‍🏫 Teachers : 0</p>
+
+        <p>🏢 Aided Schools : 8</p>
+
+        <hr>
+
+        <button onclick="showDashboard()">Dashboard</button>
+
+        <button onclick="showCirculars()">Circulars</button>
+
+        <button onclick="showDownloads()">Downloads</button>
+
+    </aside>
 
 </div>
+
+<script src="schools.js"></script>
+<script src="aidedSchools.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
