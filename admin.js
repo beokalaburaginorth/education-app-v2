@@ -39,3 +39,93 @@ function showAdminDashboard() {
 }
 
 showAdminDashboard();
+// ==========================
+// GALLERY ADMIN
+// ==========================
+
+let galleryItems = [];
+
+function showGalleryAdmin() {
+
+    let html = `
+        <h2>🖼 Gallery Management</h2>
+
+        <input type="file" id="galleryFile" accept="image/*">
+
+        <br><br>
+
+        <input
+            type="text"
+            id="galleryTitle"
+            placeholder="Photo Title"
+            style="width:100%;padding:10px;">
+
+        <br><br>
+
+        <button onclick="uploadGallery()">
+            Upload Photo
+        </button>
+
+        <hr>
+
+        <div id="galleryList"></div>
+    `;
+
+    setAdmin(html);
+
+    renderGallery();
+
+}
+
+function uploadGallery() {
+
+    const file = document.getElementById("galleryFile").files[0];
+    const title = document.getElementById("galleryTitle").value;
+
+    if (!file) {
+        alert("Select Photo");
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+
+        galleryItems.unshift({
+            title: title || "Untitled",
+            image: e.target.result
+        });
+
+        renderGallery();
+
+    };
+
+    reader.readAsDataURL(file);
+
+}
+
+function renderGallery() {
+
+    const box = document.getElementById("galleryList");
+
+    if (!box) return;
+
+    box.innerHTML = "";
+
+    galleryItems.forEach(item => {
+
+        box.innerHTML += `
+            <div style="margin-bottom:20px;border:1px solid #ddd;padding:10px;border-radius:8px;">
+
+                <img
+                    src="${item.image}"
+                    style="width:220px;border-radius:8px;">
+
+                <h4>${item.title}</h4>
+
+            </div>
+        `;
+
+    });
+
+}
