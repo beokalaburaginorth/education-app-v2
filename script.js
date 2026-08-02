@@ -20,9 +20,6 @@ function showSchools() {
 
     <br><br>
 
-    
-    <br><br>
-
     <label><b>Select School</b></label><br>
 
     <select id="school" onchange="showSchoolDetails()">
@@ -32,14 +29,15 @@ function showSchools() {
     <br><br>
 
     <div id="schoolDetails"></div>
-html += `
-<hr>
-<div id="clusterCount"></div>
-`;
+
+    <hr>
+
+    <div id="clusterCount"></div>
+  `;
 
   document.getElementById("output").innerHTML = html;
 }
-
+    
 function loadSchools() {
 
   const cluster = document.getElementById("cluster").value;
