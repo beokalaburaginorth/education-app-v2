@@ -429,69 +429,7 @@ alert("Circular Upload Success");
 showCirculars();
 }
 
-//=============================
-// SHOW GALLERY
-//=============================
 
-function showGallery(){
-
-let gallery=JSON.parse(localStorage.getItem("gallery")||"[]");
-
-let html="<h2>🖼 Gallery</h2>";
-
-if(gallery.length==0){
-html+="<p>No Images Available.</p>";
-}else{
-
-gallery.forEach(g=>{
-html+=`
-<div style="margin:20px">
-<h3>${g.title}</h3>
-<img src="${g.image}" width="250">
-<p>${g.date}</p>
-</div>
-`;
-});
-
-}
-
-setContent(html);
-
-}
-
-//=============================
-// SHOW CIRCULARS
-//=============================
-
-function showCirculars(){
-
-let circulars=JSON.parse(localStorage.getItem("circulars")||"[]");
-
-let html="<h2>📢 Circulars</h2>";
-
-if(circulars.length==0){
-html+="<p>No Circulars Available.</p>";
-}else{
-
-circulars.forEach(c=>{
-html+=`
-<div style="margin:20px">
-<h3>${c.title}</h3>
-<p>${c.date}</p>
-
-<a href="${c.pdf}" target="_blank">
-<button>View PDF</button>
-</a>
-
-<a href="${c.pdf}" download>
-<button>Download PDF</button>
-</a>
-
-</div>
-`;
-});
-
-}
 
 setContent(html);
 
