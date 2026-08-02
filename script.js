@@ -1124,3 +1124,14 @@ function showAidedTeacherReports() {
 
   loadAidedTeacherClusters();
 }
+function loadAidedTeacherClusters() {
+  const cluster = document.getElementById("aidedTeacherCluster");
+
+  cluster.innerHTML = '<option value="">-- Select Cluster --</option>';
+
+  const clusters = [...new Set(aidedSchools.map(s => s.cluster))].sort();
+
+  clusters.forEach(c => {
+    cluster.innerHTML += `<option value="${c}">${c}</option>`;
+  });
+}
