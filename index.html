@@ -50,100 +50,46 @@
 </div>
 
 <div class="main-content">
-<div class="card" onclick="showSchools()">
-<h2>🏫 School Master</h2>
-<p>View 212 Schools</p>
-</div>
- <div class="card" onclick="showAidedSchools()">
-    <h2>🏢 Aided School Master</h2>
-    <p>View Aided Schools</p>
-</div> 
-
-<div class="card" onclick="searchDISE()">
-<h2>🔍 DISE Search</h2>
-<p>Search School by DISE</p>
-</div>
-
-<div class="card" onclick="showTeachers()">
-<h2>👨‍🏫 Teacher Master</h2>
-<p>Teacher Information</p>
-</div>
-<div class="card" onclick="showAidedTeacherReports()">
-  <h2>👨‍🏫 Aided Teacher Reports</h2>
-  <p>School-wise Aided Teacher List</p>
-</div>
-<div class="card" onclick="searchKGID()">
-<h2>🆔 KGID Search</h2>
-<p>Search Teacher by KGID</p>
-</div>
-
-<div class="card" onclick="showDashboard()">
-<h2>📊 Dashboard</h2>
-<p>Statistics</p>
-</div>
-
-<div class="card" onclick="showDownloads()">
-  <h2>📥 Downloads</h2>
-  <p>Forms & Files</p>
-</div>
-<div class="card" onclick="showGallery()">
-  <h2>📸 Photo Gallery</h2>
-  <p>Training & Events</p>
-</div>
-<div class="card" onclick="showCirculars()">
-<h2>📢 Circulars</h2>
-<p>Latest Orders</p>
-</div>
-<div class="card" onclick="showTeacherReports()">
-    <h2>👨‍🏫 Teacher Reports</h2>
-    <p>School-wise Teacher List</p>
-</div>
-<div class="card" onclick="showContact()">
-<h2>☎️ Contact</h2>
-<p>BEO Office</p>
-</div>
-<div class="card" onclick="adminLogin()">
-    <h2>🔐 Admin Panel</h2>
-    <p>Manage Portal</p>
-</div>
-</div>
-
 <div class="main-layout">
 
-    <div id="output" class="center-content">
+    <!-- Left Sidebar -->
+    <div class="sidebar">
+
+        <h3>📋 Quick Menu</h3>
+
+        <button onclick="showDashboard()">📊 Dashboard</button>
+        <button onclick="showSchools()">🏫 Govt Schools</button>
+        <button onclick="showAidedSchools()">🏢 Aided Schools</button>
+        <button onclick="showTeachers()">👨‍🏫 Teachers</button>
+        <button onclick="showAidedTeacherReports()">👥 Aided Teachers</button>
+        <button onclick="showDownloads()">⬇ Downloads</button>
+        <button onclick="showGallery()">🖼 Gallery</button>
+        <button onclick="showCirculars()">📢 Circulars</button>
+        <button onclick="showContact()">☎ Contact</button>
+
     </div>
 
+    <!-- Center -->
+    <div class="center-content">
+        <div id="output"></div>
+    </div>
+
+    <!-- Right Sidebar -->
     <div class="right-sidebar">
 
-        <h3>📊 Dashboard</h3>
+        <h3>📊 Statistics</h3>
+
+        <p>🏫 Schools : 212</p>
+        <p>🏢 Aided : 8</p>
+        <p>👨‍🏫 Teachers</p>
+        <p>📍 Clusters : 21</p>
+
         <hr>
 
-        <p>🏫 Total Schools : 212</p>
-        <p>🏢 Total Clusters : 21</p>
-        <p>👨‍🏫 Teachers : 0</p>
-        <p>🏫 Aided Schools : 0</p>
-
-        <hr>
-
-        <button class="sidebar-btn" onclick="showDashboard()">
-            Dashboard
-        </button>
-
-        <button class="sidebar-btn" onclick="showCirculars()">
-            Circulars
-        </button>
-
-        <button class="sidebar-btn" onclick="showDownloads()">
-            Downloads
-        </button>
+        <button onclick="showDashboard()">Dashboard</button>
+        <button onclick="showCirculars()">Circulars</button>
+        <button onclick="showDownloads()">Downloads</button>
 
     </div>
 
 </div>
-
-<script src="schools.js"></script>
-<script src="aidedSchools.js"></script>
-<script src="script.js"></script>
-</body>
-</html>
-
