@@ -152,41 +152,15 @@ function showDownloads() {
   `);
 }
 
-function showGallery(){
+async function showGallery() {
 
-let gallery = JSON.parse(localStorage.getItem("gallery") || "[]");
+    setContent(`
+        <h2>🖼 Gallery</h2>
+        <div id="galleryContainer"></div>
+    `);
 
-let html = "<h2>🖼 Gallery</h2>";
-
-if(gallery.length==0){
-
-html += "<p>No Images Available.</p>";
-
-}else{
-
-gallery.forEach((g,index)=>{
-
-html += `
-<div style="margin:20px;padding:15px;border:1px solid #ddd;border-radius:10px;">
-<h3>${g.title}</h3>
-
-<img src="${g.image}" width="250"><br><br>
-
-<p>${g.date}</p>
-
-<button onclick="deleteGallery(${index})">🗑 Delete</button>
-
-</div>
-`;
-
-});
-
+    await loadGallery();
 }
-
-setContent(html);
-
-}
-
 function showCirculars(){
 
 let circulars = JSON.parse(localStorage.getItem("circulars") || "[]");
