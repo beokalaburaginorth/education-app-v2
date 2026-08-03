@@ -514,3 +514,6 @@ async function loadGallery() {
     `;
   });
 }
+window.onload = () => {
+    loadGallery();
+};
