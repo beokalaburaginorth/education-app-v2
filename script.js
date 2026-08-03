@@ -2,7 +2,7 @@
 // BEO EDUCATION PORTAL
 // CLEAN SCRIPT - PART 1
 // =============================
-
+import { db, storage } from "./firebase.js";
 function setContent(html) {
     document.getElementById("output").innerHTML = html;
 }
