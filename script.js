@@ -469,3 +469,48 @@ function deleteCircular(index){
     showCirculars();
 
 }
+import {
+  collection,
+  addDoc,
+  getDocs,
+  orderBy,
+  query
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+// Gallery Upload
+async function uploadGallery(imageUrl, title) {
+  try {
+    await addDoc(collection(db, "gallery"), {
+      title: title,
+      image: imageUrl,
+      createdAt: new Date()
+    });
+
+    alert("Gallery uploaded successfully");
+  } catch (e) {
+    console.error(e);
+    alert("Upload failed");
+  }
+}
+
+// Gallery Load
+async function loadGallery() {
+  const galleryDiv = document.getElementById("galleryContainer");
+
+  const q = query(collection(db, "gallery"), orderBy("createdAt", "desc"));
+
+  const snapshot = await getDocs(q);
+
+  galleryDiv.innerHTML = "";
+
+  snapshot.forEach((doc) => {
+    const data = doc.data();
+
+    galleryDiv.innerHTML += `
+      <div class="gallery-card">
+        <img src="${data.image}" width="250">
+        <h3>${data.title}</h3>
+      </div>
+    `;
+  });
+}
