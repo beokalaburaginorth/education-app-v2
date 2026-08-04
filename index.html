@@ -1,100 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BEO Kalaburagi North Education Portal</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEO Kalaburagi North Education Portal</title>
 
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Firebase -->
+    <script type="module" src="firebase.js"></script>
+    <script type="module" src="script.js"></script>
 </head>
 
 <body>
 
-<header class="header">
-<h1>🏫 BEO Kalaburagi North Education Portal</h1>
-<p>Government of Karnataka - Department of School Education</p>
+<header>
+    <h1>BEO Kalaburagi North Education Portal</h1>
+
+    <nav>
+        <button onclick="showHome()">Home</button>
+        <button onclick="showGallery()">Gallery</button>
+        <button onclick="showCircular()">Circular</button>
+        <button onclick="window.location='admin.html'">Admin</button>
+    </nav>
 </header>
 
-<nav class="topbar">
-<button onclick="showDashboard()">Dashboard</button>
-<button onclick="showSchools()">Govt Schools</button>
-<button onclick="showAidedSchools()">Aided Schools</button>
-<button onclick="showTeachers()">Teachers</button>
-<button onclick="showDownloads()">Downloads</button>
-<button onclick="showGallery()">Gallery</button>
-<button onclick="showCirculars()">Circulars</button>
-<button onclick="showContact()">Contact</button>
-<button onclick="adminLogin()">🔐 Admin</button>    
-</nav>
+<main>
 
-<div class="main-layout">
+<section id="home">
+    <h2>Welcome</h2>
+    <p>Block Education Office Kalaburagi North</p>
+</section>
 
-<!-- LEFT SIDEBAR -->
-<aside class="sidebar">
+<section id="gallery" style="display:none;">
+    <h2>Gallery</h2>
 
-<h3>📋 Quick Menu</h3>
+    <div id="galleryContainer"></div>
+</section>
 
-<button onclick="showDashboard()">📊 Dashboard</button>
-<button onclick="showSchools()">🏫 Govt Schools</button>
-<button onclick="showAidedSchools()">🏢 Aided Schools</button>
-<button onclick="showTeachers()">👨‍🏫 Teachers</button>
-<button onclick="showDownloads()">⬇ Downloads</button>
-<button onclick="showGallery()">🖼 Gallery</button>
-<button onclick="showCirculars()">📢 Circulars</button>
-<button onclick="showContact()">☎ Contact</button>
+<section id="circular" style="display:none;">
+    <h2>Circulars</h2>
 
-</aside>
-<!-- CENTER CONTENT -->
-<main class="content">
-
-<div id="output">
-
-<h2>🏠 Dashboard</h2>
-
-<p>Welcome to the BEO Kalaburagi North Education Portal.</p>
-
-<p>Select any option from the Left Menu.</p>
-
-</div>
+    <div id="circularContainer"></div>
+</section>
 
 </main>
-
-<!-- RIGHT SIDEBAR -->
-<aside class="rightbar">
-
-<h3>📊 Statistics</h3>
-
-<p>🏫 Total Schools : <span id="totalSchools">212</span></p>
-
-<p>🏢 Aided Schools : <span id="totalAided">0</span></p>
-
-<p>👨‍🏫 Teachers : <span id="totalTeachers">0</span></p>
-
-<p>📍 Clusters : <span id="totalClusters">21</span></p>
-
-<hr>
-
-<button onclick="showDashboard()">🏠 Dashboard</button>
-
-<button onclick="showDownloads()">⬇ Downloads</button>
-
-<button onclick="showCirculars()">📢 Circulars</button>
-
-<button onclick="showGallery()">🖼 Gallery</button>
-
-</aside>
-
-</div>
-<footer class="footer">
-    <p>
-        © 2026 Block Education Office, Kalaburagi North |
-        Education Management Portal
-    </p>
-</footer>
-
-<script src="schools.js"></script>
-<script src="aidedSchools.js"></script>
-<script type="module" src="script.js"></script>
 
 </body>
 </html>
