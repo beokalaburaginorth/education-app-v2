@@ -1,257 +1,106 @@
-// =============================
-// BEO EDUCATION PORTAL
-// CLEAN SCRIPT - PART 1
-// =============================
-import { db, storage } from "./firebase.js";
+mport { db, storage } from "./firebase.js";
+
 function setContent(html) {
-    document.getElementById("output").innerHTML = html;
+    document.getElementById("content").innerHTML = html;
 }
 
-function showDashboard() {
+// =======================
+// HOME
+// =======================
+
+window.showHome = function () {
 
     setContent(`
-        <h2>🏫 Dashboard</h2>
+        <h2>🏫 Welcome</h2>
 
-        <p>Welcome to the BEO Kalaburagi North Education Portal.</p>
+        <p>
+            Welcome to BEO Kalaburagi North Education Portal
+        </p>
 
-        <hr>
-
-        <div class="dashboard-grid">
+        <div class="dashboard">
 
             <div class="card">
-                <h3>Govt Schools</h3>
-                <p>Manage Government Schools</p>
+                <h3>🏫 Govt Schools</h3>
+                <p>Government Schools Information</p>
             </div>
 
             <div class="card">
-                <h3>Aided Schools</h3>
-                <p>Manage Aided Schools</p>
+                <h3>🏢 Aided Schools</h3>
+                <p>Aided Schools Information</p>
             </div>
 
             <div class="card">
-                <h3>Teachers</h3>
+                <h3>👨‍🏫 Teachers</h3>
                 <p>Teacher Management</p>
             </div>
 
             <div class="card">
-                <h3>Reports</h3>
-                <p>School & Teacher Reports</p>
+                <h3>📊 Reports</h3>
+                <p>Reports & Statistics</p>
             </div>
 
         </div>
     `);
 
-}
+};
 
-function showSchools() {
+// =======================
+// DOWNLOADS
+// =======================
 
-    let html = `
-        <h2>🏫 Government Schools</h2>
-
-       <input
-    type="text"
-    id="schoolSearch"
-    placeholder="🔍 Search by School Name / DISE"
-    onkeyup="filterGovtSchools()"
-    style="
-        width:100%;
-        padding:12px;
-        margin:15px 0;
-        border-radius:8px;
-        border:1px solid #ccc;
-    ">
-
-        <table border="1" width="100%" cellspacing="0" cellpadding="8">
-
-            <tr>
-                <th>DISE</th>
-                <th>School Name</th>
-                <th>Cluster</th>
-            </tr>
-    `;
-
-    if (typeof schools !== "undefined") {
-
-        schools.forEach(s => {
-
-            html += `
-                <tr>
-                    <td>${s.dise}</td>
-                    <td>${s.name}</td>
-                    <td>${s.cluster}</td>
-                </tr>
-            `;
-
-        });
-
-    }
-
-    html += "</table>";
-
-    setContent(html);
-
-}
-// =============================
-// CLEAN SCRIPT - PART 2
-// =============================
-
-function showAidedSchools() {
-
-    let html = `
-        <h2>🏢 Aided Schools</h2>
-
-        <table border="1" width="100%" cellspacing="0" cellpadding="8">
-
-            <tr>
-                <th>DISE</th>
-                <th>School Name</th>
-                <th>Cluster</th>
-            </tr>
-    `;
-
-    if (typeof aidedSchools !== "undefined") {
-
-        aidedSchools.forEach(s => {
-
-            html += `
-                <tr>
-                    <td>${s.dise}</td>
-                    <td>${s.name}</td>
-                    <td>${s.cluster}</td>
-                </tr>
-            `;
-
-        });
-
-    }
-
-    html += "</table>";
-
-    setContent(html);
-
-}
-
-function showTeachers() {
+window.showDownloads = function () {
 
     setContent(`
-        <h2>👨‍🏫 Teacher Management</h2>
+        <h2>📥 Downloads</h2>
 
-        <p>Teacher Master will be available after importing Teacher Excel data.</p>
+        <p>Downloads will be available here.</p>
     `);
 
-}
+};
 
-function showDownloads() {
-  setContent(`
-    <h2>📥 Downloads</h2>
+// =======================
+// GALLERY
+// =======================
 
-    <button onclick="downloadGovtExcel()">📊 Govt Excel</button>
-    <br><br>
-
-    <button onclick="downloadTeacherExcel()">👨‍🏫 Teacher Excel</button>
-  `);
-}
-
-async function showGallery() {
+window.showGallery = function () {
 
     setContent(`
         <h2>🖼 Gallery</h2>
-        <div id="galleryContainer"></div>
+
+        <div id="galleryContainer">
+            Loading...
+        </div>
     `);
 
-    await loadGallery();
-}
-function showCirculars(){
+};
 
-let circulars = JSON.parse(localStorage.getItem("circulars") || "[]");
+// =======================
+// CIRCULARS
+// =======================
 
-let html = "<h2>📢 Circulars</h2>";
-
-if(circulars.length==0){
-
-html += "<p>No Circulars Available.</p>";
-
-}else{
-
-circulars.forEach((c,index)=>{
-
-html += `
-<div style="margin:20px;padding:15px;border:1px solid #ddd;border-radius:10px;">
-
-<h3>${c.title}</h3>
-
-<p>${c.date}</p>
-
-<a href="${c.pdf}" target="_blank">
-<button>👁 View PDF</button>
-</a>
-
-<a href="${c.pdf}" download>
-<button>⬇ Download PDF</button>
-</a>
-
-<button onclick="deleteCircular(${index})">🗑 Delete</button>
-
-</div>
-`;
-
-});
-
-}
-
-setContent(html);
-
-}
-
-function showContact() {
+window.showCirculars = function () {
 
     setContent(`
-        <h2>☎ Contact</h2>
+        <h2>📢 Circulars</h2>
 
-        <p><b>Block Education Office</b></p>
-
-        <p>Kalaburagi North</p>
+        <div id="circularContainer">
+            Loading...
+        </div>
     `);
 
-}
-function filterGovtSchools(){
+};
 
-    const txt = document
-        .getElementById("schoolSearch")
-        .value
-        .toLowerCase();
+// =======================
+// ADMIN
+// =======================
 
-    const rows = document.querySelectorAll("table tr");
-
-    rows.forEach((row,index)=>{
-
-        if(index===0) return;
-
-        row.style.display =
-            row.innerText.toLowerCase().includes(txt)
-            ? ""
-            : "none";
-
-    });
-
-}
-// ===============================
-// ADMIN LOGIN
-// ===============================
-
-let isAdmin = false;
-
-function adminLogin() {
+window.adminLogin = function () {
 
     const password = prompt("Enter Admin Password");
 
     if (password === "beo123") {
 
-        isAdmin = true;
-
-        alert("Admin Login Successful");
-
-        showAdminPanel();
+        alert("Login Successful");
 
     } else {
 
@@ -259,235 +108,14 @@ function adminLogin() {
 
     }
 
-}
+};
 
-function showAdminPanel() {
+// =======================
+// PAGE LOAD
+// =======================
 
-    setContent(`
+window.onload = function () {
 
-        <h2>🔐 Admin Panel</h2>
+    showHome();
 
-        <hr>
-
-        <button onclick="showGalleryUpload()">🖼 Gallery Upload</button>
-
-        <button onclick="showCircularUpload()">📢 Circular Upload</button>
-
-        <button onclick="logoutAdmin()">🚪 Logout</button>
-
-        <hr>
-
-        <p>Welcome Admin.</p>
-
-    `);
-
-}
-
-function logoutAdmin() {
-
-    isAdmin = false;
-
-    alert("Logged Out");
-
-    showDashboard();
-
-}
-function showGalleryUpload() {
-    setContent(`
-        <h2>🖼 Gallery Upload</h2>
-
-        <input type="file" id="galleryFile"><br><br>
-
-        <input type="text" id="galleryTitle" placeholder="Photo Title"><br><br>
-
-        <button onclick="uploadGallery()">Upload Photo</button>
-
-        <div id="galleryStatus"></div>
-    `);
-}
-
-function showCircularUpload() {
-    setContent(`
-        <h2>📢 Circular Upload</h2>
-
-        <input type="file" id="circularFile" accept=".pdf"><br><br>
-
-        <input type="text" id="circularTitle" placeholder="Circular Title"><br><br>
-
-        <button onclick="uploadCircular()">Upload Circular</button>
-
-        <div id="circularStatus"></div>
-    `);
-}
-//=============================
-// GALLERY UPLOAD
-//=============================
-
-async function uploadGallery(){
-
-const file=document.getElementById("galleryFile").files[0];
-const title=document.getElementById("galleryTitle").value;
-
-if(!file){
-alert("Select Photo");
-return;
-}
-
-const formData=new FormData();
-formData.append("file",file);
-formData.append("upload_preset","beo_gallery");
-
-document.getElementById("galleryStatus").innerHTML="Uploading...";
-
-const res=await fetch("https://api.cloudinary.com/v1_1/ycyleyq2/image/upload",{
-method:"POST",
-body:formData
-});
-
-const data=await res.json();
-
-let gallery=JSON.parse(localStorage.getItem("gallery")||"[]");
-
-gallery.unshift({
-title:title,
-image:data.secure_url,
-date:new Date().toLocaleDateString()
-});
-
-localStorage.setItem("gallery",JSON.stringify(gallery));
-
-alert("Gallery Upload Success");
-
-showGallery();
-}
-
-//=============================
-// CIRCULAR UPLOAD
-//=============================
-
-async function uploadCircular(){
-
-const file=document.getElementById("circularFile").files[0];
-const title=document.getElementById("circularTitle").value;
-
-if(!file){
-alert("Select PDF");
-return;
-}
-
-const formData=new FormData();
-formData.append("file",file);
-formData.append("upload_preset","beo_gallery");
-
-document.getElementById("circularStatus").innerHTML="Uploading...";
-
-const res=await fetch("https://api.cloudinary.com/v1_1/ycyleyq2/raw/upload",{
-method:"POST",
-body:formData
-});
-
-const data=await res.json();
-
-let circulars=JSON.parse(localStorage.getItem("circulars")||"[]");
-
-circulars.unshift({
-title:title,
-pdf:data.secure_url,
-date:new Date().toLocaleDateString()
-});
-
-localStorage.setItem("circulars",JSON.stringify(circulars));
-
-alert("Circular Upload Success");
-
-showCirculars();
-}
-
-
-
-setContent(html);
-
-}
-// =============================
-// DELETE GALLERY
-// =============================
-
-function deleteGallery(index){
-
-    if(!confirm("Delete this photo?")) return;
-
-    let gallery = JSON.parse(localStorage.getItem("gallery") || "[]");
-
-    gallery.splice(index,1);
-
-    localStorage.setItem("gallery",JSON.stringify(gallery));
-
-    showGallery();
-
-}
-
-// =============================
-// DELETE CIRCULAR
-// =============================
-
-function deleteCircular(index){
-
-    if(!confirm("Delete this circular?")) return;
-
-    let circulars = JSON.parse(localStorage.getItem("circulars") || "[]");
-
-    circulars.splice(index,1);
-
-    localStorage.setItem("circulars",JSON.stringify(circulars));
-
-    showCirculars();
-
-}
-import {
-  collection,
-  addDoc,
-  getDocs,
-  orderBy,
-  query
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
-// Gallery Upload
-async function uploadGallery(imageUrl, title) {
-  try {
-    await addDoc(collection(db, "gallery"), {
-      title: title,
-      image: imageUrl,
-      createdAt: new Date()
-    });
-
-    alert("Gallery uploaded successfully");
-  } catch (e) {
-    console.error(e);
-    alert("Upload failed");
-  }
-}
-
-// Gallery Load
-async function loadGallery() {
-  const galleryDiv = document.getElementById("galleryContainer");
-
-  const q = query(collection(db, "gallery"), orderBy("createdAt", "desc"));
-
-  const snapshot = await getDocs(q);
-
-  galleryDiv.innerHTML = "";
-
-  snapshot.forEach((doc) => {
-    const data = doc.data();
-
-    galleryDiv.innerHTML += `
-      <div class="gallery-card">
-        <img src="${data.image}" width="250">
-        <h3>${data.title}</h3>
-      </div>
-    `;
-  });
-}
-window.onload = () => {
-    loadGallery();
 };
