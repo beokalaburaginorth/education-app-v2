@@ -1,4 +1,4 @@
-mport { db, storage } from "./firebase.js";
+import { db, storage } from "./firebase.js";
 
 function setContent(html) {
     document.getElementById("content").innerHTML = html;
