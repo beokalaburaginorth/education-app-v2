@@ -1,5 +1,8 @@
 import { db, storage } from "./firebase.js";
-
+import {
+  collection,
+  getDocs
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 function setContent(html) {
     document.getElementById("content").innerHTML = html;
 }
@@ -62,17 +65,42 @@ window.showDownloads = function () {
 // GALLERY
 // =======================
 
-window.showGallery = function () {
+window.showGallery = async function () {
 
-    setContent(`
-        <h2>🖼 Gallery</h2>
+    setContent("<h2>🖼 Gallery</h2><div id='galleryContainer'>Loading...</div>");
 
-        <div id="galleryContainer">
-            Loading...
-        </div>
-    `);
+    const container = document.getElementById("galleryContainer");
+
+    try {
+
+        const snapshot = await getDocs(collection(db, "gallery"));
+
+        let html = "<div class='gallery-grid'>";
+
+        snapshot.forEach((doc) => {
+            const data = doc.data();
+
+            html += `
+                <div class="gallery-card">
+                    <img src="${data.image}" alt="">
+                    <h3>${data.title}</h3>
+                </div>
+            `;
+        });
+
+        html += "</div>";
+
+        container.innerHTML = html;
+
+    } catch (error) {
+
+        console.error(error);
+        container.innerHTML = "<h3>Gallery loading failed.</h3>";
+
+    }
 
 };
+
 
 // =======================
 // CIRCULARS
