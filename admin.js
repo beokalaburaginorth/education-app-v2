@@ -38,3 +38,48 @@ document.getElementById("content").innerHTML = `
 `;
 
 };
+window.uploadGallery = async function () {
+
+    const file = document.getElementById("galleryFile").files[0];
+    const title = document.getElementById("galleryTitle").value;
+
+    if (!file || !title) {
+        alert("Please select image and enter title.");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", UPLOAD_PRESET);
+
+    try {
+
+        const response = await fetch(
+            `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+            {
+                method: "POST",
+                body: formData
+            }
+        );
+
+        const data = await response.json();
+
+        await addDoc(collection(db, "gallery"), {
+            title: title,
+            image: data.secure_url,
+            createdAt: new Date().toISOString()
+        });
+
+        alert("✅ Gallery uploaded successfully!");
+
+        document.getElementById("galleryTitle").value = "";
+        document.getElementById("galleryFile").value = "";
+
+    } catch (err) {
+
+        console.error(err);
+        alert("❌ Upload failed.");
+
+    }
+
+};
