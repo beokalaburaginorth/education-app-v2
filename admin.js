@@ -38,7 +38,7 @@ document.getElementById("content").innerHTML = `
 `;
 
 };
-window.uploadCircular = async function () { 
+window.uploadGallery = async function () {
     const file = document.getElementById("galleryFile").files[0];
     const title = document.getElementById("galleryTitle").value;
 
