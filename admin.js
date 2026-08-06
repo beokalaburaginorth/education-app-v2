@@ -2,7 +2,7 @@
 // BEO ADMIN PANEL - CLOUDINARY
 // ===============================
 
-const CLOUD_NAME = "YOUR_CLOUD_NAME";
+const CLOUD_NAME = "ycyleyq2";
 const UPLOAD_PRESET = "beo_gallery";
 
 async function uploadGallery() {
