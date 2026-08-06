@@ -106,17 +106,47 @@ window.showGallery = async function () {
 // CIRCULARS
 // =======================
 
-window.showCirculars = function () {
+window.showCirculars = async function () {
 
     setContent(`
         <h2>📢 Circulars</h2>
-
-        <div id="circularContainer">
-            Loading...
-        </div>
+        <div id="circularContainer">Loading...</div>
     `);
 
+    const container = document.getElementById("circularContainer");
+
+    try {
+
+        const snapshot = await getDocs(collection(db, "circulars"));
+
+        let html = "";
+
+        snapshot.forEach((doc) => {
+            const data = doc.data();
+
+            html += `
+                <div class="gallery-card">
+                    <h3>${data.title}</h3>
+                    <br>
+                    <a href="${data.pdf}" target="_blank">
+                        📄 Open Circular
+                    </a>
+                </div>
+                <hr>
+            `;
+        });
+
+        container.innerHTML = html;
+
+    } catch (error) {
+
+        console.error(error);
+        container.innerHTML = "<h3>Failed to load circulars.</h3>";
+
+    }
+
 };
+
 
 // =======================
 // ADMIN
