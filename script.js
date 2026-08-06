@@ -152,21 +152,7 @@ window.showCirculars = async function () {
 // ADMIN
 // =======================
 
-window.adminLogin = function () {
 
-    const password = prompt("Enter Admin Password");
-
-    if (password === "beo123") {
-
-        alert("Login Successful");
-
-    } else {
-
-        alert("Wrong Password");
-
-    }
-
-};
 
 // =======================
 // PAGE LOAD
