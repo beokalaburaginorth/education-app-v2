@@ -38,8 +38,7 @@ document.getElementById("content").innerHTML = `
 `;
 
 };
-window.uploadGallery = async function () {
-
+window.uploadCircular = async function () { 
     const file = document.getElementById("galleryFile").files[0];
     const title = document.getElementById("galleryTitle").value;
 
@@ -83,3 +82,4 @@ window.uploadGallery = async function () {
     }
 
 };
+window.uploadCircular = async function () { alert("Circular upload will be added in the next step."); };
