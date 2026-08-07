@@ -1,7 +1,9 @@
 import { db, storage } from "./firebase.js";
 import {
   collection,
-  getDocs
+  getDocs,
+  doc,
+  getDoc
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 function setContent(html) {
     document.getElementById("content").innerHTML = html;
