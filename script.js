@@ -13,8 +13,7 @@ function setContent(html) {
 // HOME
 // =======================
 
-window.showHome = function () {
-
+window.showHome = async function () {
     setContent(`
         <h2>🏫 Welcome</h2>
 
