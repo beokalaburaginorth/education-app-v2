@@ -164,3 +164,26 @@ window.showGalleryAdmin = async function () {
     document.getElementById("content").innerHTML = html;
 
 };
+window.deleteGallery = async function (id) {
+
+    const ok = confirm("Are you sure you want to delete this image?");
+
+    if (!ok) return;
+
+    try {
+
+        await deleteDoc(doc(db, "gallery", id));
+
+        alert("✅ Gallery deleted successfully.");
+
+        showGalleryAdmin();
+
+    } catch (err) {
+
+        console.error(err);
+
+        alert("❌ Delete failed.");
+
+    }
+
+};
