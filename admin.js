@@ -33,7 +33,9 @@ window.adminLogin = function () {
 <input type="file" id="galleryFile" accept="image/*"><br><br>
 
 <button onclick="uploadGallery()">Upload Gallery</button>
-
+<button onclick="showGalleryAdmin()">
+    🖼 Manage Gallery
+</button>
 <hr>
 
 <h3>Circular Upload</h3>
