@@ -9,7 +9,15 @@ const UPLOAD_PRESET = "beo_gallery";
 
 window.adminLogin = function () {
 
-document.getElementById("content").innerHTML = `
+    const username = prompt("Enter Username");
+    const password = prompt("Enter Password");
+
+    if (username !== "admin" || password !== "1234") {
+        alert("Invalid Username or Password");
+        return;
+    }
+
+    document.getElementById("content").innerHTML = `
 
 <h2>Admin Panel</h2>
 
