@@ -189,3 +189,38 @@ window.deleteGallery = async function (id) {
     }
 
 };
+window.showManageCirculars = async function () {
+
+    const snapshot = await getDocs(collection(db, "circulars"));
+
+    let html = "<h3>📑 Manage Circulars</h3>";
+
+    snapshot.forEach((item) => {
+
+        const data = item.data();
+
+        html += `
+            <div class="gallery-card">
+
+                <h3>${data.title}</h3>
+
+                <a href="${data.pdf}" target="_blank">
+                    📄 Open PDF
+                </a>
+
+                <br><br>
+
+                <button onclick="deleteCircular('${item.id}')">
+                    🗑 Delete
+                </button>
+
+                <hr>
+
+            </div>
+        `;
+
+    });
+
+    document.getElementById("content").innerHTML = html;
+
+};
