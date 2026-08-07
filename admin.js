@@ -82,4 +82,46 @@ window.uploadGallery = async function () {
     }
 
 };
-window.uploadCircular = async function () { alert("Circular upload will be added in the next step."); };
+window.uploadCircular = async function () {
+
+    const file = document.getElementById("circularFile").files[0];
+    const title = document.getElementById("circularTitle").value;
+
+    if (!file || !title) {
+        alert("Please select PDF and enter title.");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", UPLOAD_PRESET);
+
+    try {
+
+        const response = await fetch(
+            `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/raw/upload`,
+            {
+                method: "POST",
+                body: formData
+            }
+        );
+
+        const data = await response.json();
+
+        await addDoc(collection(db, "circulars"), {
+            title: title,
+            pdf: data.secure_url,
+            createdAt: new Date().toISOString()
+        });
+
+        alert("✅ Circular uploaded successfully!");
+
+        document.getElementById("circularTitle").value = "";
+        document.getElementById("circularFile").value = "";
+
+    } catch (err) {
+        console.error(err);
+        alert("❌ Circular upload failed.");
+    }
+
+};
