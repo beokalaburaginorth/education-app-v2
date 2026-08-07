@@ -136,3 +136,31 @@ window.uploadCircular = async function () {
     }
 
 };
+window.showGalleryAdmin = async function () {
+
+    const snapshot = await getDocs(collection(db, "gallery"));
+
+    let html = "<h3>🖼 Manage Gallery</h3>";
+
+    snapshot.forEach((item) => {
+
+        const data = item.data();
+
+        html += `
+            <div class="gallery-card">
+                <img src="${data.image}" width="200">
+                <h4>${data.title}</h4>
+
+                <button onclick="deleteGallery('${item.id}')">
+                    🗑 Delete
+                </button>
+
+                <hr>
+            </div>
+        `;
+
+    });
+
+    document.getElementById("content").innerHTML = html;
+
+};
