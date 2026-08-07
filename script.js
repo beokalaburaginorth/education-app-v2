@@ -14,6 +14,23 @@ function setContent(html) {
 // =======================
 
 window.showHome = async function () {
+  const dashboardRef = doc(db, "dashboard", "statistics");
+const dashboardSnap = await getDoc(dashboardRef);
+
+let stats = {
+    govtPrimarySchools: 0,
+    govtHighSchools: 0,
+    aidedPrimarySchools: 0,
+    aidedHighSchools: 0,
+    govtPrimaryTeachers: 0,
+    govtHighTeachers: 0,
+    aidedPrimaryTeachers: 0,
+    aidedHighTeachers: 0
+};
+
+if (dashboardSnap.exists()) {
+    stats = dashboardSnap.data();
+}
     setContent(`
         <h2>🏫 Welcome</h2>
 
