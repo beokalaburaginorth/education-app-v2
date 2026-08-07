@@ -40,27 +40,49 @@ if (dashboardSnap.exists()) {
 
         <div class="dashboard">
 
-            <div class="card">
-                <h3>🏫 Govt Schools</h3>
-                <p>Government Schools Information</p>
-            </div>
+            <div class="dashboard">
 
-            <div class="card">
-                <h3>🏢 Aided Schools</h3>
-                <p>Aided Schools Information</p>
-            </div>
+<div class="card">
+<h3>🏫 Govt Primary Schools</h3>
+<h2>${stats.govtPrimarySchools}</h2>
+</div>
 
-            <div class="card">
-                <h3>👨‍🏫 Teachers</h3>
-                <p>Teacher Management</p>
-            </div>
+<div class="card">
+<h3>🏫 Govt High Schools</h3>
+<h2>${stats.govtHighSchools}</h2>
+</div>
 
-            <div class="card">
-                <h3>📊 Reports</h3>
-                <p>Reports & Statistics</p>
-            </div>
+<div class="card">
+<h3>🏫 Aided Primary Schools</h3>
+<h2>${stats.aidedPrimarySchools}</h2>
+</div>
 
-        </div>
+<div class="card">
+<h3>🏫 Aided High Schools</h3>
+<h2>${stats.aidedHighSchools}</h2>
+</div>
+
+<div class="card">
+<h3>👨‍🏫 Govt Primary Teachers</h3>
+<h2>${stats.govtPrimaryTeachers}</h2>
+</div>
+
+<div class="card">
+<h3>👨‍🏫 Govt High School Teachers</h3>
+<h2>${stats.govtHighTeachers}</h2>
+</div>
+
+<div class="card">
+<h3>👨‍🏫 Aided Primary Teachers</h3>
+<h2>${stats.aidedPrimaryTeachers}</h2>
+</div>
+
+<div class="card">
+<h3>👨‍🏫 Aided High School Teachers</h3>
+<h2>${stats.aidedHighTeachers}</h2>
+</div>
+
+</div>
     `);
 
 };
