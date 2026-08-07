@@ -118,7 +118,7 @@ window.showCirculars = async function () {
     try {
 
         const snapshot = await getDocs(collection(db, "circulars"));
-
+console.log(snapshot.size);
         let html = "";
 
         snapshot.forEach((doc) => {
