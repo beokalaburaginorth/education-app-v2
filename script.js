@@ -118,10 +118,16 @@ window.showCirculars = async function () {
     try {
 
         const snapshot = await getDocs(collection(db, "circulars"));
-console.log(snapshot.size);
-        let html = "";
+
+        if (snapshot.empty) {
+            container.innerHTML = "<h3>No Circulars Available</h3>";
+            return;
+        }
+
+        let html = "<div class='gallery-grid'>";
 
         snapshot.forEach((doc) => {
+
             const data = doc.data();
 
             html += `
@@ -132,9 +138,10 @@ console.log(snapshot.size);
                         📄 Open Circular
                     </a>
                 </div>
-                <hr>
             `;
         });
+
+        html += "</div>";
 
         container.innerHTML = html;
 
@@ -146,7 +153,6 @@ console.log(snapshot.size);
     }
 
 };
-
 
 // =======================
 // PAGE LOAD
