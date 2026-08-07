@@ -224,3 +224,26 @@ window.showManageCirculars = async function () {
     document.getElementById("content").innerHTML = html;
 
 };
+window.deleteCircular = async function (id) {
+
+    const ok = confirm("Are you sure you want to delete this circular?");
+
+    if (!ok) return;
+
+    try {
+
+        await deleteDoc(doc(db, "circulars", id));
+
+        alert("✅ Circular deleted successfully.");
+
+        showManageCirculars();
+
+    } catch (err) {
+
+        console.error(err);
+
+        alert("❌ Delete failed.");
+
+    }
+
+};
