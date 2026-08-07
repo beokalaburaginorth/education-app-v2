@@ -47,7 +47,9 @@ window.adminLogin = function () {
 <button onclick="uploadCircular()">Upload Circular</button>
 
 </div>
-
+<button onclick="showManageCirculars()">
+    📑 Manage Circulars
+</button>
 `;
 
 };
