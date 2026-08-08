@@ -1,12 +1,11 @@
 import { db } from "./firebase.js";
+
 import {
   collection,
   addDoc,
-  getDocs,
-  deleteDoc,
+  writeBatch,
   doc
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
 const CLOUD_NAME = "ycyleyq2";
 const UPLOAD_PRESET = "beo_gallery";
 
@@ -25,7 +24,27 @@ window.adminLogin = function () {
 <h2>Admin Panel</h2>
 
 <div class="admin-box">
+<hr>
 
+<h3>🏫 School Data Import</h3>
+
+<p>
+  Government + Aided School Excel upload
+</p>
+
+<input
+  type="file"
+  id="schoolExcelFile"
+  accept=".xlsx,.xls"
+/>
+
+<br><br>
+
+<button onclick="importSchoolsExcel()">
+  📥 Import School Excel
+</button>
+
+<p id="schoolImportStatus"></p>
 <h3>Gallery Upload</h3>
 
 <input type="text" id="galleryTitle" placeholder="Image Title"><br><br>
