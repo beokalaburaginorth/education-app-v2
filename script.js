@@ -1,10 +1,11 @@
+import { db } from "./firebase.js";
+
 import {
   doc,
   getDoc,
   collection,
   getDocs
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
 
 function setContent(html) {
   document.getElementById("content").innerHTML = html;
@@ -48,16 +49,17 @@ window.showHome = async function () {
   const dashboardSnap =
     await getDoc(dashboardRef);
 
-
   let stats = {
 
     govtPrimarySchools: 0,
     govtHighSchools: 0,
+
     aidedPrimarySchools: 0,
     aidedHighSchools: 0,
 
     govtPrimaryTeachers: 0,
     govtHighTeachers: 0,
+
     aidedPrimaryTeachers: 0,
     aidedHighTeachers: 0
 
@@ -82,8 +84,9 @@ window.showHome = async function () {
       Welcome to BEO Kalaburagi North Education Portal
     </p>
 
-
     <div class="dashboard">
+
+      <!-- PIE CHART -->
 
       <div class="card">
 
@@ -94,23 +97,22 @@ window.showHome = async function () {
       </div>
 
 
+      <!-- SCHOOL CARDS -->
+
       <div class="card">
         <h3>🏫 Govt Primary Schools</h3>
         <h2>${stats.govtPrimarySchools}</h2>
       </div>
-
 
       <div class="card">
         <h3>🏫 Govt High Schools</h3>
         <h2>${stats.govtHighSchools}</h2>
       </div>
 
-
       <div class="card">
         <h3>🏫 Aided Primary Schools</h3>
         <h2>${stats.aidedPrimarySchools}</h2>
       </div>
-
 
       <div class="card">
         <h3>🏫 Aided High Schools</h3>
@@ -118,23 +120,22 @@ window.showHome = async function () {
       </div>
 
 
+      <!-- TEACHER CARDS -->
+
       <div class="card">
         <h3>👨‍🏫 Govt Primary Teachers</h3>
         <h2>${stats.govtPrimaryTeachers}</h2>
       </div>
-
 
       <div class="card">
         <h3>👨‍🏫 Govt High School Teachers</h3>
         <h2>${stats.govtHighTeachers}</h2>
       </div>
 
-
       <div class="card">
         <h3>👨‍🏫 Aided Primary Teachers</h3>
         <h2>${stats.aidedPrimaryTeachers}</h2>
       </div>
-
 
       <div class="card">
         <h3>👨‍🏫 Aided High School Teachers</h3>
@@ -146,8 +147,11 @@ window.showHome = async function () {
   `);
 
 
-  await loadChartJS();
+  // =======================
+  // CREATE PIE CHART
+  // =======================
 
+  await loadChartJS();
 
   const canvas =
     document.getElementById("schoolPieChart");
@@ -160,10 +164,12 @@ window.showHome = async function () {
     data: {
 
       labels: [
+
         "Govt Primary",
         "Govt High School",
         "Aided Primary",
         "Aided High School"
+
       ],
 
       datasets: [{
@@ -191,7 +197,9 @@ window.showHome = async function () {
       plugins: {
 
         legend: {
+
           position: "bottom"
+
         }
 
       }
@@ -203,7 +211,6 @@ window.showHome = async function () {
 };
 
 
-
 // =======================
 // GALLERY
 // =======================
@@ -211,55 +218,88 @@ window.showHome = async function () {
 window.showGallery = async function () {
 
   setContent(`
+
     <h2>🖼️ Gallery</h2>
+
     <p>Loading gallery...</p>
+
   `);
+
 
   try {
 
-    const galleryRef = collection(db, "gallery");
-    const snapshot = await getDocs(galleryRef);
+    const galleryRef =
+      collection(db, "gallery");
+
+    const snapshot =
+      await getDocs(galleryRef);
+
 
     let html = `
+
       <h2>🖼️ Gallery</h2>
+
       <div class="dashboard">
+
     `;
+
 
     if (snapshot.empty) {
 
       html += `
+
         <div class="card">
+
           <h3>No Gallery Images</h3>
+
           <p>Gallery is empty.</p>
+
         </div>
+
       `;
 
     } else {
 
       snapshot.forEach((docSnap) => {
 
-        const data = docSnap.data();
+        const data =
+          docSnap.data();
+
 
         const imageUrl =
+
           data.imageUrl ||
+
           data.imageURL ||
+
           data.url ||
+
           data.photo ||
+
           data.image;
 
+
         const title =
+
           data.title ||
+
           data.name ||
+
           "Gallery Image";
+
 
         if (imageUrl) {
 
           html += `
+
             <div class="card">
 
               <img
+
                 src="${imageUrl}"
+
                 alt="${title}"
+
                 style="
                   width:100%;
                   max-width:500px;
@@ -267,11 +307,13 @@ window.showGallery = async function () {
                   display:block;
                   margin:auto;
                 "
+
               >
 
               <h3>${title}</h3>
 
             </div>
+
           `;
 
         }
@@ -280,151 +322,30 @@ window.showGallery = async function () {
 
     }
 
+
     html += `</div>`;
+
 
     setContent(html);
 
+
   } catch (error) {
 
-    console.error("Gallery Error:", error);
+    console.error(
+      "Gallery Error:",
+      error
+    );
+
 
     setContent(`
+
       <h2>🖼️ Gallery</h2>
 
       <div class="card">
+
         <h3>Gallery Error</h3>
+
         <p>${error.message}</p>
-      </div>
-    `);
-
-  }
-
-};
-
-
-
-// =======================
-// CIRCULAR
-// =======================
-
-window.showCirculars = async function () {
-
-  setContent(`
-
-    <h2>📢 Circulars</h2>
-
-    <p>Loading circulars...</p>
-
-  `);
-
-
-  try {
-
-    const snapshot =
-      await getDocs(collection(db, "circulars"));
-
-
-    let html = `
-
-      <h2>📢 Circulars</h2>
-
-      <div class="dashboard">
-
-    `;
-
-
-    if (snapshot.empty) {
-
-      html += `
-
-        <div class="card">
-
-          <h3>No Circulars</h3>
-
-          <p>No circulars available.</p>
-
-        </div>
-
-      `;
-
-    } else {
-
-      snapshot.forEach((docSnap) => {
-
-        const data = docSnap.data();
-
-
-        const title =
-          data.title ||
-          data.name ||
-          "Circular";
-
-
-        const pdfUrl =
-          data.pdfUrl ||
-          data.pdfURL ||
-          data.url ||
-          data.fileUrl ||
-          data.fileURL;
-
-
-        html += `
-
-          <div class="card">
-
-            <h3>📄 ${title}</h3>
-
-            ${
-              pdfUrl
-              ? `
-                <a
-                  href="${pdfUrl}"
-                  target="_blank"
-                  style="
-                    display:inline-block;
-                    padding:10px 15px;
-                    background:#1976d2;
-                    color:white;
-                    border-radius:6px;
-                    text-decoration:none;
-                  "
-                >
-                  📥 View Circular
-                </a>
-              `
-              : `
-                <p>PDF link not available.</p>
-              `
-            }
-
-          </div>
-
-        `;
-
-      });
-
-    }
-
-
-    html += `</div>`;
-
-
-    setContent(html);
-
-
-  } catch (error) {
-
-    console.error(error);
-
-    setContent(`
-
-      <h2>📢 Circulars</h2>
-
-      <div class="card">
-
-        <p>Circular loading error.</p>
-
-        <small>${error.message}</small>
 
       </div>
 
@@ -433,11 +354,3 @@ window.showCirculars = async function () {
   }
 
 };
-
-
-
-// =======================
-// START HOME
-// =======================
-
-window.showHome();
