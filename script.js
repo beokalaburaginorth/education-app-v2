@@ -1053,10 +1053,7 @@ window.showSelectedSchool = async function (schoolId) {
         👨‍🏫 Teacher List
     </button>
 </div>
-`;
-
-
-    </div>
+</div>
 `;
 html += `
 <div style="
