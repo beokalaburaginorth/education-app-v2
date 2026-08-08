@@ -268,3 +268,137 @@ window.deleteCircular = async function (id) {
     }
 
 };
+window.importSchoolsExcel = async function () {
+
+  const file =
+    document.getElementById("schoolExcelFile").files[0];
+
+  const status =
+    document.getElementById("schoolImportStatus");
+
+  if (!file) {
+    alert("Please select School Excel file.");
+    return;
+  }
+
+  status.innerHTML = "⏳ Reading Excel...";
+
+  try {
+
+    // Load Excel library
+    if (!window.XLSX) {
+
+      await new Promise((resolve, reject) => {
+
+        const script =
+          document.createElement("script");
+
+        script.src =
+          "https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js";
+
+        script.onload = resolve;
+        script.onerror = reject;
+
+        document.head.appendChild(script);
+
+      });
+
+    }
+
+
+    const arrayBuffer =
+      await file.arrayBuffer();
+
+    const workbook =
+      XLSX.read(arrayBuffer, {
+        type: "array"
+      });
+
+
+    const sheetName =
+      workbook.SheetNames[0];
+
+    const worksheet =
+      workbook.Sheets[sheetName];
+
+
+    const rows =
+      XLSX.utils.sheet_to_json(worksheet);
+
+
+    if (!rows.length) {
+
+      status.innerHTML =
+        "❌ Excel is empty.";
+
+      return;
+    }
+
+
+    status.innerHTML =
+      `⏳ ${rows.length} schools found. Uploading...`;
+
+
+    // Firestore maximum batch = 500
+    const batch = writeBatch(db);
+
+
+    rows.forEach((row) => {
+
+      const schoolRef =
+        doc(collection(db, "schools"));
+
+
+      batch.set(schoolRef, {
+
+        cluster:
+          String(row["CLUSTER NAME"] || "").trim(),
+
+        schoolName:
+          String(row["SCHOOL NAME"] || "").trim(),
+
+        diseNumber:
+          String(row["DISE NUMBER"] || "").trim(),
+
+        type:
+          String(row["TYPE"] || "").trim(),
+
+        management:
+          String(row["MANAGEMENT"] || "").trim(),
+
+        teacherPdf: ""
+
+      });
+
+    });
+
+
+    await batch.commit();
+
+
+    status.innerHTML =
+      `✅ ${rows.length} school records imported successfully!`;
+
+    alert(
+      `✅ ${rows.length} schools imported successfully.`
+    );
+
+
+  } catch (error) {
+
+    console.error(
+      "School Import Error:",
+      error
+    );
+
+    status.innerHTML =
+      `❌ Import failed: ${error.message}`;
+
+    alert(
+      "❌ Import failed: " +
+      error.message
+    );
+
+  }
+
+};
