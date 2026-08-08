@@ -1024,25 +1024,37 @@ window.showSelectedSchool = async function (schoolId) {
         <h3>🏫 ${schoolName}</h3>
     `;
 
-    if (teacherPdf) {
+   html += `
+    <div style="
+        background:#0047a1;
+        color:white;
+        padding:12px 16px;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        margin-top:10px;
+        border-radius:6px;
+    ">
 
-      html += `
-        <p>👨‍🏫 Teacher List</p>
+        <b>👨‍🏫 ${schoolName} - Teacher List</b>
 
-     <button
-  onclick="showTeacherPDFModal('${teacherPdf}', '${schoolName}')"
-  style="
-    background:#1976d2;
-    color:white;
-    border:none;
-    padding:10px 18px;
-    border-radius:8px;
-    cursor:pointer;
-    font-weight:bold;
-  ">
-  📄 View Teachers PDF
-</button>
-      `;
+        <button
+            onclick="showTeacherPDFModal('${teacherPdf || ""}', '${schoolName}')"
+            style="
+                background:white;
+                color:#0047a1;
+                border:none;
+                padding:9px 16px;
+                border-radius:6px;
+                cursor:pointer;
+                font-weight:bold;
+            ">
+            👨‍🏫 Teacher List
+        </button>
+
+    </div>
+`;
+
 
     } else {
 
