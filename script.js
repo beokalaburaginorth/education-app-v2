@@ -1,237 +1,256 @@
-import { db, storage } from "./firebase.js";
+import { db } from "./firebase.js";
+
 import {
-  collection,
-  getDocs,
   doc,
   getDoc
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
 function setContent(html) {
-    document.getElementById("content").innerHTML = html;
+  document.getElementById("content").innerHTML = html;
 }
+
+
+// =======================
+// LOAD CHART.JS
+// =======================
+
+function loadChartJS() {
+  return new Promise((resolve, reject) => {
+
+    if (window.Chart) {
+      resolve();
+      return;
+    }
+
+    const script = document.createElement("script");
+
+    script.src = "https://cdn.jsdelivr.net/npm/chart.js";
+
+    script.onload = resolve;
+
+    script.onerror = reject;
+
+    document.head.appendChild(script);
+  });
+}
+
 
 // =======================
 // HOME
 // =======================
 
 window.showHome = async function () {
-  const dashboardRef = doc(db, "dashboard", "statistics");
-const dashboardSnap = await getDoc(dashboardRef);
 
-let stats = {
+  const dashboardRef =
+    doc(db, "dashboard", "statistics");
+
+  const dashboardSnap =
+    await getDoc(dashboardRef);
+
+
+  let stats = {
+
     govtPrimarySchools: 0,
+
     govtHighSchools: 0,
+
     aidedPrimarySchools: 0,
+
     aidedHighSchools: 0,
+
     govtPrimaryTeachers: 0,
+
     govtHighTeachers: 0,
+
     aidedPrimaryTeachers: 0,
+
     aidedHighTeachers: 0
-};
 
-if (dashboardSnap.exists()) {
-    stats = dashboardSnap.data();
-}
-    setContent(`
-        <h2>🏫 Welcome</h2>
+  };
 
-        <p>
-            Welcome to BEO Kalaburagi North Education Portal
-        </p>
 
-        <div class="dashboard">
+  if (dashboardSnap.exists()) {
 
-            <div class="dashboard">
-<div class="card">
-    <h3>📊 Schools Distribution</h3>
-    <canvas id="schoolPieChart"></canvas>
-</div>
-<div class="card">
-<h3>🏫 Govt Primary Schools</h3>
-<h2>${stats.govtPrimarySchools}</h2>
-</div>
+    stats = {
+      ...stats,
+      ...dashboardSnap.data()
+    };
 
-<div class="card">
-<h3>🏫 Govt High Schools</h3>
-<h2>${stats.govtHighSchools}</h2>
-</div>
-
-<div class="card">
-<h3>🏫 Aided Primary Schools</h3>
-<h2>${stats.aidedPrimarySchools}</h2>
-</div>
-
-<div class="card">
-<h3>🏫 Aided High Schools</h3>
-<h2>${stats.aidedHighSchools}</h2>
-</div>
-
-<div class="card">
-<h3>👨‍🏫 Govt Primary Teachers</h3>
-<h2>${stats.govtPrimaryTeachers}</h2>
-</div>
-
-<div class="card">
-<h3>👨‍🏫 Govt High School Teachers</h3>
-<h2>${stats.govtHighTeachers}</h2>
-</div>
-
-<div class="card">
-<h3>👨‍🏫 Aided Primary Teachers</h3>
-<h2>${stats.aidedPrimaryTeachers}</h2>
-</div>
-
-<div class="card">
-<h3>👨‍🏫 Aided High School Teachers</h3>
-<h2>${stats.aidedHighTeachers}</h2>
-</div>
-
-</div>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<div class="card">
-  <h3>📊 School Distribution</h3>
-  <canvas id="schoolPieChart"></canvas>
-</div>
-
-<script>
-new Chart(document.getElementById("schoolPieChart"), {
-  type: "pie",
-  data: {
-    labels: [
-      "Govt Primary",
-      "Govt High School",
-      "Aided Primary",
-      "Aided High School"
-    ],
-    datasets: [{
-      data: [
-        stats.govtPrimarySchools,
-        stats.govtHighSchools,
-        stats.aidedPrimarySchools,
-        stats.aidedHighSchools
-      ]
-    }]
   }
-});
-</script>
-
-    `);
-
-};
-
-// =======================
-// DOWNLOADS
-// =======================
-
-window.showDownloads = function () {
-
-    setContent(`
-        <h2>📥 Downloads</h2>
-
-        <p>Downloads will be available here.</p>
-    `);
-
-};
-
-// =======================
-// GALLERY
-// =======================
-
-window.showGallery = async function () {
-
-    setContent("<h2>🖼 Gallery</h2><div id='galleryContainer'>Loading...</div>");
-
-    const container = document.getElementById("galleryContainer");
-
-    try {
-
-        const snapshot = await getDocs(collection(db, "gallery"));
-
-        let html = "<div class='gallery-grid'>";
-
-        snapshot.forEach((doc) => {
-            const data = doc.data();
-
-            html += `
-                <div class="gallery-card">
-                    <img src="${data.image}" alt="">
-                    <h3>${data.title}</h3>
-                </div>
-            `;
-        });
-
-        html += "</div>";
-
-        container.innerHTML = html;
-
-    } catch (error) {
-
-        console.error(error);
-        container.innerHTML = "<h3>Gallery loading failed.</h3>";
-
-    }
-
-};
 
 
-// =======================
-// CIRCULARS
-// =======================
+  // =======================
+  // DASHBOARD HTML
+  // =======================
 
-window.showCirculars = async function () {
+  setContent(`
 
-    setContent(`
-        <h2>📢 Circulars</h2>
-        <div id="circularContainer">Loading...</div>
-    `);
+    <h2>🏫 Welcome</h2>
 
-    const container = document.getElementById("circularContainer");
+    <p>
+      Welcome to BEO Kalaburagi North Education Portal
+    </p>
 
-    try {
 
-        const snapshot = await getDocs(collection(db, "circulars"));
+    <div class="dashboard">
 
-        if (snapshot.empty) {
-            container.innerHTML = "<h3>No Circulars Available</h3>";
-            return;
+
+      <!-- PIE CHART -->
+
+      <div class="card">
+
+        <h3>📊 Schools Distribution</h3>
+
+        <canvas id="schoolPieChart"></canvas>
+
+      </div>
+
+
+      <!-- SCHOOL CARDS -->
+
+      <div class="card">
+
+        <h3>🏫 Govt Primary Schools</h3>
+
+        <h2>${stats.govtPrimarySchools}</h2>
+
+      </div>
+
+
+      <div class="card">
+
+        <h3>🏫 Govt High Schools</h3>
+
+        <h2>${stats.govtHighSchools}</h2>
+
+      </div>
+
+
+      <div class="card">
+
+        <h3>🏫 Aided Primary Schools</h3>
+
+        <h2>${stats.aidedPrimarySchools}</h2>
+
+      </div>
+
+
+      <div class="card">
+
+        <h3>🏫 Aided High Schools</h3>
+
+        <h2>${stats.aidedHighSchools}</h2>
+
+      </div>
+
+
+      <!-- TEACHER CARDS -->
+
+      <div class="card">
+
+        <h3>👨‍🏫 Govt Primary Teachers</h3>
+
+        <h2>${stats.govtPrimaryTeachers}</h2>
+
+      </div>
+
+
+      <div class="card">
+
+        <h3>👨‍🏫 Govt High School Teachers</h3>
+
+        <h2>${stats.govtHighTeachers}</h2>
+
+      </div>
+
+
+      <div class="card">
+
+        <h3>👨‍🏫 Aided Primary Teachers</h3>
+
+        <h2>${stats.aidedPrimaryTeachers}</h2>
+
+      </div>
+
+
+      <div class="card">
+
+        <h3>👨‍🏫 Aided High School Teachers</h3>
+
+        <h2>${stats.aidedHighTeachers}</h2>
+
+      </div>
+
+
+    </div>
+
+  `);
+
+
+  // =======================
+  // CREATE PIE CHART
+  // =======================
+
+  await loadChartJS();
+
+
+  const canvas =
+    document.getElementById("schoolPieChart");
+
+
+  new Chart(canvas, {
+
+    type: "pie",
+
+    data: {
+
+      labels: [
+
+        "Govt Primary",
+
+        "Govt High School",
+
+        "Aided Primary",
+
+        "Aided High School"
+
+      ],
+
+      datasets: [{
+
+        data: [
+
+          Number(stats.govtPrimarySchools) || 0,
+
+          Number(stats.govtHighSchools) || 0,
+
+          Number(stats.aidedPrimarySchools) || 0,
+
+          Number(stats.aidedHighSchools) || 0
+
+        ]
+
+      }]
+
+    },
+
+    options: {
+
+      responsive: true,
+
+      plugins: {
+
+        legend: {
+
+          position: "bottom"
+
         }
 
-        let html = "<div class='gallery-grid'>";
-
-        snapshot.forEach((doc) => {
-
-            const data = doc.data();
-
-            html += `
-                <div class="gallery-card">
-                    <h3>${data.title}</h3>
-                    <br>
-                    <a href="${data.pdf}" target="_blank">
-                        📄 Open Circular
-                    </a>
-                </div>
-            `;
-        });
-
-        html += "</div>";
-
-        container.innerHTML = html;
-
-    } catch (error) {
-
-        console.error(error);
-        container.innerHTML = "<h3>Failed to load circulars.</h3>";
+      }
 
     }
 
-};
-
-// =======================
-// PAGE LOAD
-// =======================
-
-window.onload = function () {
-
-    showHome();
+  });
 
 };
