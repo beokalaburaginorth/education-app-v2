@@ -361,26 +361,30 @@ window.showGallery = async function () {
 window.showCirculars = async function () {
 
   setContent(`
-    <h2>📢 Circular</h2>
+    <h2>📢 Circulars</h2>
     <p>Loading circulars...</p>
   `);
 
   try {
 
+    console.log("Circular loading started");
+
     const circularRef = collection(db, "circulars");
+
     const snapshot = await getDocs(circularRef);
+
+    console.log("Circular documents:", snapshot.size);
 
     let html = `
       <h2>📢 Circulars</h2>
-      <div class="dashboard">
     `;
 
     if (snapshot.empty) {
 
       html += `
         <div class="card">
-          <h3>No Circulars</h3>
-          <p>No circular available.</p>
+          <h3>No Circulars Found</h3>
+          <p>Firestore circulars collection is empty.</p>
         </div>
       `;
 
@@ -393,70 +397,67 @@ window.showCirculars = async function () {
         const title =
           data.title ||
           data.name ||
+          data.subject ||
           "Circular";
 
         const pdfUrl =
+          data.pdf ||
           data.pdfUrl ||
           data.pdfURL ||
-          data.url ||
           data.fileUrl ||
-          data.file;
+          data.url;
 
-        const date =
-          data.date ||
-          data.createdAt ||
-          "";
+        html += `
+          <div class="card">
 
-        if (pdfUrl) {
+            <h3>📄 ${title}</h3>
 
-          html += `
-            <div class="card">
+            ${
+              pdfUrl
+                ? `
+                  <a
+                    href="${pdfUrl}"
+                    target="_blank"
+                    style="
+                      display:inline-block;
+                      padding:10px 20px;
+                      background:#1976d2;
+                      color:white;
+                      border-radius:6px;
+                      text-decoration:none;
+                    "
+                  >
+                    📄 View Circular
+                  </a>
+                `
+                : `
+                  <p>PDF link not found</p>
+                `
+            }
 
-              <h3>📄 ${title}</h3>
-
-              <p>${date}</p>
-
-              <a
-                href="${pdfUrl}"
-                target="_blank"
-                style="
-                  display:inline-block;
-                  padding:10px 18px;
-                  background:#1976d2;
-                  color:white;
-                  text-decoration:none;
-                  border-radius:6px;
-                "
-              >
-                📥 View / Download PDF
-              </a>
-
-            </div>
-          `;
-
-        }
+          </div>
+        `;
 
       });
-
     }
-
-    html += `</div>`;
 
     setContent(html);
 
   } catch (error) {
 
-    console.error("Circular Error:", error);
+    console.error("CIRCULAR ERROR:", error);
 
     setContent(`
-      <h2>📢 Circular</h2>
+      <h2>📢 Circulars</h2>
 
       <div class="card">
-        <h3>Circular loading error</h3>
+
+        <h3>❌ Circular loading error</h3>
+
         <p>${error.message}</p>
+
       </div>
     `);
-
   }
-
 };
+
