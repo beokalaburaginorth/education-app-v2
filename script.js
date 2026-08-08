@@ -978,4 +978,221 @@ window.loadSchoolsByCluster = async function () {
       </p>`;
   }
 };
+// ======================================
+// STEP 4C - SCHOOL SELECT → TEACHER PDF
+// ======================================
+
+window.showSelectedSchool = async function (schoolId) {
+
+  if (!schoolId) {
+    document.getElementById("schoolInfo").innerHTML = "";
+    return;
+  }
+
+  try {
+
+    const schoolRef = doc(db, "schools", schoolId);
+    const schoolSnap = await getDoc(schoolRef);
+
+    if (!schoolSnap.exists()) {
+      document.getElementById("schoolInfo").innerHTML =
+        `<p style="color:red;">School data not found.</p>`;
+      return;
+    }
+
+    const data = schoolSnap.data();
+
+    const schoolName =
+      data.schoolName ||
+      data.school ||
+      data["SCHOOL NAME"] ||
+      data["School Name"] ||
+      data.name ||
+      "School";
+
+    const teacherPdf =
+      data.teacherPdf ||
+      data.teacherPDF ||
+      data.teacherPdfUrl ||
+      data.teacherPDFUrl ||
+      data.teacherPdfLink ||
+      data.teacherPdfURL ||
+      "";
+
+    let html = `
+      <div class="card" style="margin-top:20px;">
+        <h3>🏫 ${schoolName}</h3>
+    `;
+
+    if (teacherPdf) {
+
+      html += `
+        <p>👨‍🏫 Teacher List</p>
+
+        <a href="${teacherPdf}"
+           target="_blank"
+           style="
+             display:inline-block;
+             padding:10px 18px;
+             background:#1976d2;
+             color:white;
+             text-decoration:none;
+             border-radius:8px;
+           ">
+           📄 View Teachers PDF
+        </a>
+      `;
+
+    } else {
+
+      html += `
+        <p style="color:#777;">
+          👨‍🏫 Teacher PDF is not available yet.
+        </p>
+      `;
+    }
+
+    html += `</div>`;
+
+    document.getElementById("schoolInfo").innerHTML = html;
+
+  } catch (error) {
+
+    console.error("Teacher PDF Error:", error);
+
+    document.getElementById("schoolInfo").innerHTML =
+      `<p style="color:red;">
+        Error: ${error.message}
+      </p>`;
+  }
+};
+// ======================================
+// TEACHER PDF MODAL
+// ======================================
+
+window.showTeacherPDFModal = function (pdfUrl, schoolName) {
+
+  if (!pdfUrl) {
+    alert("Teacher PDF is not available for this school.");
+    return;
+  }
+
+  const oldModal = document.getElementById("teacherPdfModal");
+
+  if (oldModal) {
+    oldModal.remove();
+  }
+
+  const modal = document.createElement("div");
+
+  modal.id = "teacherPdfModal";
+
+  modal.innerHTML = `
+    <div style="
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.75);
+      z-index:9999;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:15px;
+    ">
+
+      <div style="
+        width:95%;
+        height:90%;
+        max-width:1000px;
+        background:white;
+        border-radius:12px;
+        overflow:hidden;
+        box-shadow:0 5px 30px rgba(0,0,0,0.4);
+        display:flex;
+        flex-direction:column;
+      ">
+
+        <div style="
+          background:#0d47a1;
+          color:white;
+          padding:12px 16px;
+          display:flex;
+          align-items:center;
+          justify-content:space-between;
+        ">
+
+          <b>👨‍🏫 ${schoolName} - Teacher List</b>
+
+          <button
+            onclick="closeTeacherPDFModal()"
+            style="
+              background:white;
+              color:#0d47a1;
+              border:none;
+              border-radius:50%;
+              width:32px;
+              height:32px;
+              font-size:18px;
+              font-weight:bold;
+              cursor:pointer;
+            ">
+            ✕
+          </button>
+
+        </div>
+
+        <iframe
+          src="${pdfUrl}"
+          style="
+            width:100%;
+            height:100%;
+            border:none;
+            flex:1;
+          ">
+        </iframe>
+
+        <div style="
+          padding:10px;
+          text-align:center;
+          background:#f5f5f5;
+        ">
+
+          <a
+            href="${pdfUrl}"
+            target="_blank"
+            style="
+              display:inline-block;
+              background:#1976d2;
+              color:white;
+              padding:9px 18px;
+              border-radius:6px;
+              text-decoration:none;
+              font-weight:bold;
+            ">
+            ⬇️ Open / Download PDF
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+};
+
+
+// ======================================
+// CLOSE TEACHER PDF MODAL
+// ======================================
+
+window.closeTeacherPDFModal = function () {
+
+  const modal =
+    document.getElementById("teacherPdfModal");
+
+  if (modal) {
+    modal.remove();
+  }
+};
 
