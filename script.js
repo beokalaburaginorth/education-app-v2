@@ -1068,6 +1068,23 @@ window.showSelectedSchool = async function (schoolId) {
 
     </div>
 `;
+html += `
+<div style="
+    margin-top:12px;
+    background:#f5f5f5;
+    border:1px solid #ddd;
+    border-radius:8px;
+    padding:15px;
+">
+    <h3 style="color:#0047a1;">
+        👨‍🏫 Related Teachers
+    </h3>
+
+    <p style="color:#777;text-align:center;">
+        Teacher data not available yet.
+    </p>
+</div>
+`;
 
     html += `</div>`;
 
