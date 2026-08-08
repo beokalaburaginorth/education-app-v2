@@ -256,6 +256,7 @@ window.showGallery = async function () {
 
           html += `
             <div class="card">
+
               <img
                 src="${imageUrl}"
                 alt="${title}"
@@ -263,9 +264,13 @@ window.showGallery = async function () {
                   width:100%;
                   max-width:500px;
                   border-radius:10px;
+                  display:block;
+                  margin:auto;
                 "
               >
+
               <h3>${title}</h3>
+
             </div>
           `;
 
@@ -285,6 +290,7 @@ window.showGallery = async function () {
 
     setContent(`
       <h2>🖼️ Gallery</h2>
+
       <div class="card">
         <h3>Gallery Error</h3>
         <p>${error.message}</p>
