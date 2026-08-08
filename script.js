@@ -1024,19 +1024,8 @@ window.showSelectedSchool = async function (schoolId) {
         <h3>🏫 ${schoolName}</h3>
     `;
 
-   html += `
-    <div style="
-        background:#0047a1;
-        color:white;
-        padding:12px 16px;
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        margin-top:10px;
-        border-radius:6px;
-    ">
-
-       <div style="
+  html += `
+<div style="
     background:#ffffff;
     padding:12px 16px;
     margin-top:10px;
@@ -1050,7 +1039,7 @@ window.showSelectedSchool = async function (schoolId) {
     </b>
 
     <button
-        onclick='showTeacherPDFModal(${JSON.stringify(teacherPdf)}, ${JSON.stringify(schoolName)})'
+        onclick="alert('Teacher data is not available yet for this school.')"
         style="
             background:#0047a1;
             color:white;
@@ -1064,6 +1053,7 @@ window.showSelectedSchool = async function (schoolId) {
         👨‍🏫 Teacher List
     </button>
 </div>
+`;
 
 
     </div>
