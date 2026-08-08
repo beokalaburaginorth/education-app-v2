@@ -211,28 +211,19 @@ window.showHome = async function () {
 window.showGallery = async function () {
 
   setContent(`
-
     <h2>🖼️ Gallery</h2>
-
     <p>Loading gallery...</p>
-
   `);
-
 
   try {
 
-    const snapshot =
-      await getDocs(collection(db, "gallery"));
-
+    const galleryRef = collection(db, "gallery");
+    const snapshot = await getDocs(galleryRef);
 
     let html = `
-
       <h2>🖼️ Gallery</h2>
-
       <div class="dashboard">
-
     `;
-
 
     if (snapshot.empty) {
 
@@ -249,7 +240,6 @@ window.showGallery = async function () {
 
         const data = docSnap.data();
 
-
         const imageUrl =
           data.imageUrl ||
           data.imageURL ||
@@ -257,34 +247,26 @@ window.showGallery = async function () {
           data.photo ||
           data.image;
 
-
         const title =
           data.title ||
           data.name ||
-          "Gallery";
-
+          "Gallery Image";
 
         if (imageUrl) {
 
           html += `
-
             <div class="card">
-
               <img
                 src="${imageUrl}"
                 alt="${title}"
                 style="
                   width:100%;
-                  max-height:300px;
-                  object-fit:cover;
+                  max-width:500px;
                   border-radius:10px;
                 "
               >
-
               <h3>${title}</h3>
-
             </div>
-
           `;
 
         }
@@ -293,29 +275,20 @@ window.showGallery = async function () {
 
     }
 
-
     html += `</div>`;
-
 
     setContent(html);
 
-
   } catch (error) {
 
-    console.error(error);
+    console.error("Gallery Error:", error);
 
     setContent(`
-
       <h2>🖼️ Gallery</h2>
-
       <div class="card">
-
-        <p>Gallery loading error.</p>
-
-        <small>${error.message}</small>
-
+        <h3>Gallery Error</h3>
+        <p>${error.message}</p>
       </div>
-
     `);
 
   }
