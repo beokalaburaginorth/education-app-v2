@@ -86,6 +86,35 @@ if (dashboardSnap.exists()) {
 </div>
 
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<div class="card">
+  <h3>📊 School Distribution</h3>
+  <canvas id="schoolPieChart"></canvas>
+</div>
+
+<script>
+new Chart(document.getElementById("schoolPieChart"), {
+  type: "pie",
+  data: {
+    labels: [
+      "Govt Primary",
+      "Govt High School",
+      "Aided Primary",
+      "Aided High School"
+    ],
+    datasets: [{
+      data: [
+        stats.govtPrimarySchools,
+        stats.govtHighSchools,
+        stats.aidedPrimarySchools,
+        stats.aidedHighSchools
+      ]
+    }]
+  }
+});
+</script>
+
     `);
 
 };
