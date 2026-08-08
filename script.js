@@ -1029,18 +1029,19 @@ window.showSelectedSchool = async function (schoolId) {
       html += `
         <p>👨‍🏫 Teacher List</p>
 
-        <a href="${teacherPdf}"
-           target="_blank"
-           style="
-             display:inline-block;
-             padding:10px 18px;
-             background:#1976d2;
-             color:white;
-             text-decoration:none;
-             border-radius:8px;
-           ">
-           📄 View Teachers PDF
-        </a>
+     <button
+  onclick="showTeacherPDFModal('${teacherPdf}', '${schoolName}')"
+  style="
+    background:#1976d2;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+  ">
+  📄 View Teachers PDF
+</button>
       `;
 
     } else {
