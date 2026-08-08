@@ -354,3 +354,109 @@ window.showGallery = async function () {
   }
 
 };
+// =======================
+// CIRCULAR
+// =======================
+
+window.showCircular = async function () {
+
+  setContent(`
+    <h2>📢 Circular</h2>
+    <p>Loading circulars...</p>
+  `);
+
+  try {
+
+    const circularRef = collection(db, "circulars");
+    const snapshot = await getDocs(circularRef);
+
+    let html = `
+      <h2>📢 Circulars</h2>
+      <div class="dashboard">
+    `;
+
+    if (snapshot.empty) {
+
+      html += `
+        <div class="card">
+          <h3>No Circulars</h3>
+          <p>No circular available.</p>
+        </div>
+      `;
+
+    } else {
+
+      snapshot.forEach((docSnap) => {
+
+        const data = docSnap.data();
+
+        const title =
+          data.title ||
+          data.name ||
+          "Circular";
+
+        const pdfUrl =
+          data.pdfUrl ||
+          data.pdfURL ||
+          data.url ||
+          data.fileUrl ||
+          data.file;
+
+        const date =
+          data.date ||
+          data.createdAt ||
+          "";
+
+        if (pdfUrl) {
+
+          html += `
+            <div class="card">
+
+              <h3>📄 ${title}</h3>
+
+              <p>${date}</p>
+
+              <a
+                href="${pdfUrl}"
+                target="_blank"
+                style="
+                  display:inline-block;
+                  padding:10px 18px;
+                  background:#1976d2;
+                  color:white;
+                  text-decoration:none;
+                  border-radius:6px;
+                "
+              >
+                📥 View / Download PDF
+              </a>
+
+            </div>
+          `;
+
+        }
+
+      });
+
+    }
+
+    html += `</div>`;
+
+    setContent(html);
+
+  } catch (error) {
+
+    console.error("Circular Error:", error);
+
+    setContent(`
+      <h2>📢 Circular</h2>
+
+      <div class="card">
+        <h3>Circular loading error</h3>
+        <p>${error.message}</p>
+      </div>
+    `);
+
+  }
+
+};
