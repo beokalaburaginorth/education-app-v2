@@ -41,7 +41,10 @@ if (dashboardSnap.exists()) {
         <div class="dashboard">
 
             <div class="dashboard">
-
+<div class="card">
+    <h3>📊 Schools Distribution</h3>
+    <canvas id="schoolPieChart"></canvas>
+</div>
 <div class="card">
 <h3>🏫 Govt Primary Schools</h3>
 <h2>${stats.govtPrimarySchools}</h2>
