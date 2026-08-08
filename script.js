@@ -794,4 +794,188 @@ window.showCirculars = async function () {
     `);
   }
 };
+// ======================================
+// STEP 4 - SCHOOL SELECTOR
+// Cluster → Government / Aided → School
+// ======================================
+
+window.showSchoolSelector = async function () {
+
+  setContent(`
+    <h2>🏫 School Information</h2>
+
+    <div class="card">
+
+      <label><b>Select Cluster</b></label>
+      <select id="clusterSelect" onchange="loadSchoolsByCluster()">
+        <option value="">-- Select Cluster --</option>
+      </select>
+
+      <br><br>
+
+      <label><b>Government Schools</b></label>
+      <select id="govtSchoolSelect">
+        <option value="">-- Select Government School --</option>
+      </select>
+
+      <br><br>
+
+      <label><b>Aided Schools</b></label>
+      <select id="aidedSchoolSelect">
+        <option value="">-- Select Aided School --</option>
+      </select>
+
+      <br><br>
+
+      <div id="schoolInfo"></div>
+
+    </div>
+  `);
+
+  try {
+
+    const snapshot = await getDocs(collection(db, "schools"));
+
+    const clusters = new Set();
+
+    snapshot.forEach((docSnap) => {
+
+      const data = docSnap.data();
+
+      const cluster =
+        data.clusterName ||
+        data.cluster ||
+        data["CLUSTER NAME"] ||
+        data["Cluster Name"] ||
+        data.CLUSTER ||
+        "";
+
+      if (cluster) {
+        clusters.add(String(cluster).trim());
+      }
+    });
+
+    const clusterSelect =
+      document.getElementById("clusterSelect");
+
+    [...clusters]
+      .sort()
+      .forEach((cluster) => {
+
+        const option = document.createElement("option");
+
+        option.value = cluster;
+        option.textContent = cluster;
+
+        clusterSelect.appendChild(option);
+      });
+
+  } catch (error) {
+
+    console.error("School loading error:", error);
+
+    document.getElementById("schoolInfo").innerHTML =
+      `<p style="color:red;">School data loading error: ${error.message}</p>`;
+  }
+};
+
+
+// ======================================
+// LOAD SCHOOLS AFTER CLUSTER SELECTION
+// ======================================
+
+window.loadSchoolsByCluster = async function () {
+
+  const selectedCluster =
+    document.getElementById("clusterSelect").value;
+
+  const govtSelect =
+    document.getElementById("govtSchoolSelect");
+
+  const aidedSelect =
+    document.getElementById("aidedSchoolSelect");
+
+  govtSelect.innerHTML =
+    `<option value="">-- Select Government School --</option>`;
+
+  aidedSelect.innerHTML =
+    `<option value="">-- Select Aided School --</option>`;
+
+  if (!selectedCluster) return;
+
+  try {
+
+    const snapshot = await getDocs(
+      collection(db, "schools")
+    );
+
+    snapshot.forEach((docSnap) => {
+
+      const data = docSnap.data();
+
+      const cluster =
+        data.clusterName ||
+        data.cluster ||
+        data["CLUSTER NAME"] ||
+        data["Cluster Name"] ||
+        data.CLUSTER ||
+        "";
+
+      if (
+        String(cluster).trim().toLowerCase() !==
+        selectedCluster.trim().toLowerCase()
+      ) {
+        return;
+      }
+
+      const schoolName =
+        data.schoolName ||
+        data.school ||
+        data["SCHOOL NAME"] ||
+        data["School Name"] ||
+        data.name ||
+        "";
+
+      const management =
+        data.management ||
+        data.schoolType ||
+        data.type ||
+        data["MANAGEMENT"] ||
+        data["Management"] ||
+        data["SCHOOL TYPE"] ||
+        "";
+
+      if (!schoolName) return;
+
+      const option = document.createElement("option");
+
+      option.value = docSnap.id;
+      option.textContent = schoolName;
+
+      const managementText =
+        String(management).toLowerCase();
+
+      if (
+        managementText.includes("aided")
+      ) {
+
+        aidedSelect.appendChild(option);
+
+      } else {
+
+        govtSelect.appendChild(option);
+      }
+
+    });
+
+  } catch (error) {
+
+    console.error("School filter error:", error);
+
+    document.getElementById("schoolInfo").innerHTML =
+      `<p style="color:red;">
+        School loading error: ${error.message}
+      </p>`;
+  }
+};
 
