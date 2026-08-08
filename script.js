@@ -814,7 +814,7 @@ window.showSchoolSelector = async function () {
       <br><br>
 
       <label><b>Government Schools</b></label>
-      <select id="govtSchoolSelect">
+      <select id="govtSchoolSelect" onchange="showSelectedSchool(this.value)">
         <option value="">-- Select Government School --</option>
       </select>
 
