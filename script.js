@@ -1036,21 +1036,35 @@ window.showSelectedSchool = async function (schoolId) {
         border-radius:6px;
     ">
 
-        <b>👨‍🏫 ${schoolName} - Teacher List</b>
+       <div style="
+    background:#ffffff;
+    padding:12px 16px;
+    margin-top:10px;
+    border-radius:6px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+">
+    <b style="color:#0047a1;">
+        👨‍🏫 ${schoolName} - Teacher List
+    </b>
 
-        <button
-            onclick="showTeacherPDFModal('${teacherPdf || ""}', '${schoolName}')"
-            style="
-                background:white;
-                color:#0047a1;
-                border:none;
-                padding:9px 16px;
-                border-radius:6px;
-                cursor:pointer;
-                font-weight:bold;
-            ">
-            👨‍🏫 Teacher List
-        </button>
+    <button
+        onclick='showTeacherPDFModal(${JSON.stringify(teacherPdf)}, ${JSON.stringify(schoolName)})'
+        style="
+            background:#0047a1;
+            color:white;
+            border:none;
+            padding:9px 16px;
+            border-radius:6px;
+            cursor:pointer;
+            font-weight:bold;
+        "
+    >
+        👨‍🏫 Teacher List
+    </button>
+</div>
+
 
     </div>
 `;
