@@ -1055,16 +1055,6 @@ window.showSelectedSchool = async function (schoolId) {
     </div>
 `;
 
-
-    } else {
-
-      html += `
-        <p style="color:#777;">
-          👨‍🏫 Teacher PDF is not available yet.
-        </p>
-      `;
-    }
-
     html += `</div>`;
 
     document.getElementById("schoolInfo").innerHTML = html;
