@@ -355,7 +355,7 @@ window.showGallery = async function () {
 
 };
 // =======================
-// CIRCULARS
+// CIRCULAR
 // =======================
 
 window.showCirculars = async function () {
