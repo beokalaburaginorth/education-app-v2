@@ -355,10 +355,10 @@ window.showGallery = async function () {
 
 };
 // =======================
-// CIRCULAR
+// CIRCULARS
 // =======================
 
-window.showCircular = async function () {
+window.showCirculars = async function () {
 
   setContent(`
     <h2>📢 Circular</h2>
