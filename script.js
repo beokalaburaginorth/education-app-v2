@@ -36,177 +36,511 @@ function loadChartJS() {
   });
 }
 
-
 // =======================
-// HOME
+// PROFESSIONAL HOME DASHBOARD
 // =======================
 
 window.showHome = async function () {
 
-  const dashboardRef =
-    doc(db, "dashboard", "statistics");
+  try {
 
-  const dashboardSnap =
-    await getDoc(dashboardRef);
+    const dashboardRef =
+      doc(db, "dashboard", "statistics");
 
-  let stats = {
+    const dashboardSnap =
+      await getDoc(dashboardRef);
 
-    govtPrimarySchools: 0,
-    govtHighSchools: 0,
+    let stats = {
 
-    aidedPrimarySchools: 0,
-    aidedHighSchools: 0,
+      govtPrimarySchools: 0,
+      govtHighSchools: 0,
+      aidedPrimarySchools: 0,
+      aidedHighSchools: 0,
 
-    govtPrimaryTeachers: 0,
-    govtHighTeachers: 0,
+      govtPrimaryTeachers: 0,
+      govtHighTeachers: 0,
+      aidedPrimaryTeachers: 0,
+      aidedHighTeachers: 0
 
-    aidedPrimaryTeachers: 0,
-    aidedHighTeachers: 0
-
-  };
-
-
-  if (dashboardSnap.exists()) {
-
-    stats = {
-      ...stats,
-      ...dashboardSnap.data()
     };
 
-  }
+    if (dashboardSnap.exists()) {
+
+      stats = {
+        ...stats,
+        ...dashboardSnap.data()
+      };
+
+    }
 
 
-  setContent(`
+    // =======================
+    // TOTALS
+    // =======================
 
-    <h2>🏫 Welcome</h2>
+    const totalSchools =
+      Number(stats.govtPrimarySchools) +
+      Number(stats.govtHighSchools) +
+      Number(stats.aidedPrimarySchools) +
+      Number(stats.aidedHighSchools);
 
-    <p>
-      Welcome to BEO Kalaburagi North Education Portal
-    </p>
 
-    <div class="dashboard">
+    const totalTeachers =
+      Number(stats.govtPrimaryTeachers) +
+      Number(stats.govtHighTeachers) +
+      Number(stats.aidedPrimaryTeachers) +
+      Number(stats.aidedHighTeachers);
 
-      <!-- PIE CHART -->
 
-      <div class="card">
+    // =======================
+    // DASHBOARD HTML
+    // =======================
 
-        <h3>📊 Schools Distribution</h3>
+    setContent(`
 
-        <canvas id="schoolPieChart"></canvas>
+      <div class="dashboard-home">
+
+        <div class="welcome-box">
+
+          <div>
+
+            <h2>🏫 BEO Kalaburagi North</h2>
+
+            <p>
+              Education Department Dashboard
+            </p>
+
+          </div>
+
+          <div class="welcome-icon">
+            📚
+          </div>
+
+        </div>
+
+
+        <!-- SUMMARY CARDS -->
+
+        <div class="summary-grid">
+
+          <div class="summary-card school-total">
+
+            <div class="summary-icon">
+              🏫
+            </div>
+
+            <div>
+
+              <span>Total Schools</span>
+
+              <strong>${totalSchools}</strong>
+
+            </div>
+
+          </div>
+
+
+          <div class="summary-card teacher-total">
+
+            <div class="summary-icon">
+              👨‍🏫
+            </div>
+
+            <div>
+
+              <span>Total Teachers</span>
+
+              <strong>${totalTeachers}</strong>
+
+            </div>
+
+          </div>
+
+
+          <div class="summary-card govt-total">
+
+            <div class="summary-icon">
+              🏛️
+            </div>
+
+            <div>
+
+              <span>Government Schools</span>
+
+              <strong>
+                ${
+                  Number(stats.govtPrimarySchools) +
+                  Number(stats.govtHighSchools)
+                }
+              </strong>
+
+            </div>
+
+          </div>
+
+
+          <div class="summary-card aided-total">
+
+            <div class="summary-icon">
+              🏢
+            </div>
+
+            <div>
+
+              <span>Aided Schools</span>
+
+              <strong>
+                ${
+                  Number(stats.aidedPrimarySchools) +
+                  Number(stats.aidedHighSchools)
+                }
+              </strong>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- CHARTS -->
+
+        <div class="charts-grid">
+
+
+          <div class="chart-card">
+
+            <h3>📊 School Distribution</h3>
+
+            <div class="chart-box">
+
+              <canvas id="schoolPieChart"></canvas>
+
+            </div>
+
+          </div>
+
+
+          <div class="chart-card">
+
+            <h3>👨‍🏫 Teacher Distribution</h3>
+
+            <div class="chart-box">
+
+              <canvas id="teacherBarChart"></canvas>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+        <!-- SCHOOL DETAILS -->
+
+        <h2 class="section-title">
+          🏫 School Details
+        </h2>
+
+
+        <div class="detail-grid">
+
+
+          <div class="detail-card">
+
+            <span>🏫</span>
+
+            <div>
+
+              <h4>Govt Primary Schools</h4>
+
+              <strong>${stats.govtPrimarySchools}</strong>
+
+            </div>
+
+          </div>
+
+
+          <div class="detail-card">
+
+            <span>🏫</span>
+
+            <div>
+
+              <h4>Govt High Schools</h4>
+
+              <strong>${stats.govtHighSchools}</strong>
+
+            </div>
+
+          </div>
+
+
+          <div class="detail-card">
+
+            <span>🏢</span>
+
+            <div>
+
+              <h4>Aided Primary Schools</h4>
+
+              <strong>${stats.aidedPrimarySchools}</strong>
+
+            </div>
+
+          </div>
+
+
+          <div class="detail-card">
+
+            <span>🏢</span>
+
+            <div>
+
+              <h4>Aided High Schools</h4>
+
+              <strong>${stats.aidedHighSchools}</strong>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+        <!-- TEACHER DETAILS -->
+
+        <h2 class="section-title">
+          👨‍🏫 Teacher Details
+        </h2>
+
+
+        <div class="detail-grid">
+
+
+          <div class="detail-card">
+
+            <span>👨‍🏫</span>
+
+            <div>
+
+              <h4>Govt Primary Teachers</h4>
+
+              <strong>${stats.govtPrimaryTeachers}</strong>
+
+            </div>
+
+          </div>
+
+
+          <div class="detail-card">
+
+            <span>👨‍🏫</span>
+
+            <div>
+
+              <h4>Govt High School Teachers</h4>
+
+              <strong>${stats.govtHighTeachers}</strong>
+
+            </div>
+
+          </div>
+
+
+          <div class="detail-card">
+
+            <span>👨‍🏫</span>
+
+            <div>
+
+              <h4>Aided Primary Teachers</h4>
+
+              <strong>${stats.aidedPrimaryTeachers}</strong>
+
+            </div>
+
+          </div>
+
+
+          <div class="detail-card">
+
+            <span>👨‍🏫</span>
+
+            <div>
+
+              <h4>Aided High School Teachers</h4>
+
+              <strong>${stats.aidedHighTeachers}</strong>
+
+            </div>
+
+          </div>
+
+
+        </div>
 
       </div>
 
-
-      <!-- SCHOOL CARDS -->
-
-      <div class="card">
-        <h3>🏫 Govt Primary Schools</h3>
-        <h2>${stats.govtPrimarySchools}</h2>
-      </div>
-
-      <div class="card">
-        <h3>🏫 Govt High Schools</h3>
-        <h2>${stats.govtHighSchools}</h2>
-      </div>
-
-      <div class="card">
-        <h3>🏫 Aided Primary Schools</h3>
-        <h2>${stats.aidedPrimarySchools}</h2>
-      </div>
-
-      <div class="card">
-        <h3>🏫 Aided High Schools</h3>
-        <h2>${stats.aidedHighSchools}</h2>
-      </div>
+    `);
 
 
-      <!-- TEACHER CARDS -->
+    // =======================
+    // CHART.JS
+    // =======================
 
-      <div class="card">
-        <h3>👨‍🏫 Govt Primary Teachers</h3>
-        <h2>${stats.govtPrimaryTeachers}</h2>
-      </div>
-
-      <div class="card">
-        <h3>👨‍🏫 Govt High School Teachers</h3>
-        <h2>${stats.govtHighTeachers}</h2>
-      </div>
-
-      <div class="card">
-        <h3>👨‍🏫 Aided Primary Teachers</h3>
-        <h2>${stats.aidedPrimaryTeachers}</h2>
-      </div>
-
-      <div class="card">
-        <h3>👨‍🏫 Aided High School Teachers</h3>
-        <h2>${stats.aidedHighTeachers}</h2>
-      </div>
-
-    </div>
-
-  `);
+    await loadChartJS();
 
 
-  // =======================
-  // CREATE PIE CHART
-  // =======================
+    // =======================
+    // SCHOOL DOUGHNUT
+    // =======================
 
-  await loadChartJS();
+    new Chart(
+      document.getElementById("schoolPieChart"),
+      {
 
-  const canvas =
-    document.getElementById("schoolPieChart");
+        type: "doughnut",
 
+        data: {
 
-  new Chart(canvas, {
+          labels: [
+            "Govt Primary",
+            "Govt High",
+            "Aided Primary",
+            "Aided High"
+          ],
 
-    type: "pie",
+          datasets: [{
 
-    data: {
+            data: [
 
-      labels: [
+              Number(stats.govtPrimarySchools) || 0,
+              Number(stats.govtHighSchools) || 0,
+              Number(stats.aidedPrimarySchools) || 0,
+              Number(stats.aidedHighSchools) || 0
 
-        "Govt Primary",
-        "Govt High School",
-        "Aided Primary",
-        "Aided High School"
+            ],
 
-      ],
+            borderWidth: 2
 
-      datasets: [{
+          }]
 
-        data: [
+        },
 
-          Number(stats.govtPrimarySchools) || 0,
+        options: {
 
-          Number(stats.govtHighSchools) || 0,
+          responsive: true,
 
-          Number(stats.aidedPrimarySchools) || 0,
+          maintainAspectRatio: false,
 
-          Number(stats.aidedHighSchools) || 0
+          plugins: {
 
-        ]
+            legend: {
 
-      }]
+              position: "bottom"
 
-    },
+            }
 
-    options: {
-
-      responsive: true,
-
-      plugins: {
-
-        legend: {
-
-          position: "bottom"
+          }
 
         }
 
       }
+    );
 
-    }
 
-  });
+    // =======================
+    // TEACHER BAR CHART
+    // =======================
+
+    new Chart(
+      document.getElementById("teacherBarChart"),
+      {
+
+        type: "bar",
+
+        data: {
+
+          labels: [
+
+            "Govt Primary",
+            "Govt High",
+            "Aided Primary",
+            "Aided High"
+
+          ],
+
+          datasets: [{
+
+            label: "Teachers",
+
+            data: [
+
+              Number(stats.govtPrimaryTeachers) || 0,
+              Number(stats.govtHighTeachers) || 0,
+              Number(stats.aidedPrimaryTeachers) || 0,
+              Number(stats.aidedHighTeachers) || 0
+
+            ],
+
+            borderWidth: 1
+
+          }]
+
+        },
+
+        options: {
+
+          responsive: true,
+
+          maintainAspectRatio: false,
+
+          scales: {
+
+            y: {
+
+              beginAtZero: true
+
+            }
+
+          },
+
+          plugins: {
+
+            legend: {
+
+              display: false
+
+            }
+
+          }
+
+        }
+
+      }
+    );
+
+
+  } catch (error) {
+
+    console.error("Dashboard Error:", error);
+
+    setContent(`
+
+      <div class="card">
+
+        <h2>❌ Dashboard Error</h2>
+
+        <p>${error.message}</p>
+
+      </div>
+
+    `);
+
+  }
 
 };
 
